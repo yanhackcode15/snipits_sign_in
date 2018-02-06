@@ -1,0 +1,19 @@
+<div class="card">
+	<div class="card-body">
+		<h2>
+		  Dear {{capitalizeFirst(lastname)}} family, 
+		</h2>
+		<p>
+			You has been checked in. We'll be calling the following party shortly.
+		</p>
+		<ul *ngFor="let child of children">
+			<li><strong>{{capitalizeFirst(child)}}</strong></li>
+		</ul>
+		<p>
+			Your check in time is: {{timeStamp}}. 
+		</p>
+	</div>  
+
+</div>
+
+

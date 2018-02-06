@@ -1,0 +1,240 @@
+<div class="container">
+	<form 
+		novalidate 
+		[formGroup]="myform2" 
+		(ngSubmit)="signIn()"
+		autocomplete="nofill"
+	>
+		<div 
+			class="alert alert-danger formError fixed-top"
+			*ngIf="error"
+			role="alert"
+		>
+			<button type="button" class="close" aria-label="Close" (click)=closeAlert()>
+			  <span aria-hidden="true">&times;</span>
+			</button>
+			<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+			{{noSubmit}}
+
+		</div>
+		
+		<div class="card">
+			<div class="card-header">
+				We'll need your contact information to create your family profile!
+			</div>
+			<div class="card-body">
+				<div 
+					[ngClass]="{
+		  				'text-danger': lastname.invalid && (lastname.touched || lastname.dirty),
+		  				'text-success': lastname.valid && (lastname.touched || lastname.dirty)	
+					}"
+				>
+					<div class="form-group input-group">
+						<label class="input-group-addon" for="lastname">
+				    		* Family's Last Name
+					    </label>
+						<input 
+							#lastnameSearchEl
+							type="text" 
+							id="lastname" 
+							class="form-control" 
+							formControlName="lastname"
+						>
+					</div>
+					<div 
+						class="form-control-feedback" 
+						*ngIf="lastname.errors && (lastname.dirty || lastname.touched)"
+					>
+						<p>
+							Last name is required.
+						</p>
+					</div>
+			  	</div>
+			  	<div
+			  		[ngClass]="{
+		  				'text-danger': phone.invalid && (phone.touched || phone.dirty),
+		  				'text-success': phone.valid && (phone.touched || phone.dirty)	
+					}"
+			  	>
+					<div class="form-group input-group">
+						<label class="input-group-addon" for="phone">
+							* Phone Number
+						</label>
+						<input 
+							#phoneSearchEl
+							id="phone" 
+							type="text" 
+							class="form-control" 
+							formControlName="phone" 
+							placeholder="10 digits no space or dash"
+						>
+					</div>
+					<div 
+						class="form-control-feedback" 
+						*ngIf="phone.errors && phone.touched"
+					>
+						<p>
+							Required and must be 10 digits without any spaces or dashes.
+						</p>
+					</div>
+				</div>
+				<div
+					[ngClass]="{
+		  				'text-danger': email.invalid && (email.touched || email.dirty),
+		  				'text-success': email.valid && (email.touched || email.dirty)	
+					}"
+				>
+					<div class="form-group input-group">
+						<label class="input-group-addon" for="email">Email Address</label>
+						<input 
+							#emailSearchEl
+							type=email 
+							id="email" 
+							class="form-control" 
+							formControlName="email" 
+							placeholder="xxx@xxx.xxx"
+						>
+						
+					</div>
+					<div 
+						class="form-control-feedback" 
+						*ngIf="email.errors && email.dirty"
+					>
+						<p>
+							Please check your email address.
+						</p>
+					</div>
+				</div>
+
+				<app-address-auto-complete
+					#addressSearchEl
+					(onSelect)=handleAddressSelect($event)
+					[parentFormGroup]="myform2"
+				>
+				</app-address-auto-complete>
+			</div>
+		</div>
+		
+		<div class="form-group card">
+
+			<div class="card-body">	
+
+				<div class="form-group">
+				    <label class="title-text" for="childCount">* How many children might be receiving service today or in the future?</label>
+				    <div id="childCount" class="btn-group count" ngbRadioGroup name="radioBasic">
+				    	<label class="btn btn-lg btn-outline-primary" ngbButtonLabel>
+				    		<input type="radio" class="form-control" name="childCount" value="1" ngbButton formControlName="childCount" (change)="updateCount()" required checked="checked"><span class="button-text">1</span>
+				    	</label>
+						<label class="btn btn-lg btn-outline-primary" ngbButtonLabel>
+				    		<input type="radio" class="form-control" name="childCount" value="2" ngbButton formControlName="childCount" (change)="updateCount()" required>
+				    		<span class="button-text">2</span>
+				    	</label>
+				    	<label class="btn btn-lg btn-outline-primary" ngbButtonLabel>
+				    		<input type="radio" class="form-control" name="childCount" value="3" ngbButton formControlName="childCount" (change)="updateCount()" required>
+				    		<span class="button-text">3</span>
+				    	</label>
+				    	<label class="btn btn-lg btn-outline-primary" ngbButtonLabel>
+				    		<input type="radio" class="form-control" name="childCount" value="4" ngbButton formControlName="childCount" (change)="updateCount()" required>
+				    		<span class="button-text">4</span>
+				    	</label>
+				    	<label class="btn btn-lg btn-outline-primary" ngbButtonLabel>
+				    		<input type="radio" class="form-control" name="childCount" value="5" ngbButton formControlName="childCount" (change)="updateCount()" required>
+				    		<span class="button-text">5</span>
+				    	</label>
+					</div>
+			  	</div>
+			  	<div class="form-group">
+					<ul 
+						class="form-group list-group list-group-flush" 
+						formArrayName="children" 
+						*ngFor="let child of children.controls.slice(0, childCount.value); let i=index;" 
+					>
+						<li class="form-group list-group-item" [formGroup]="child">
+							<div
+								[ngClass]="{
+										'text-danger': child.get('childName').invalid && (child.get('childName').touched || child.get('childName').dirty),
+										'text-success': child.get('childName').valid && (child.get('childName').touched || child.get('childName').dirty)
+								}"
+							>
+								<div 
+									class="form-group input-group" 
+								>
+									<label class="input-group-addon" [attr.for]="'child' + i + '_childName'">* Child {{i+1}} First Name</label>
+									<input
+										#childNameSearchEl
+										type="text"
+										class="form-control"
+										[attr.id]="'child' + i + '_childName'"
+										formControlName="childName"
+										required
+									>
+								</div>
+								<div 
+									class="form-control-feedback" 
+									*ngIf="child.get('childName').errors && (child.get('childName').touched || child.get('childName').dirty)"
+								>
+									<p 
+										*ngIf="child.get('childName').errors.required && (child.get('childName').touched || child.get('childName').dirty)"
+									>
+										Child's name is required.
+									</p>
+								</div>
+							</div>
+							<!-- <div class="form-group input-group">
+								<label class="input-group-addon" [attr.for]="'child' + i + '_childBirthday'">Birthday</label>
+								<input 
+									type="date" 
+									class="form-control" 
+									[attr.id]="'child' + i + '_childBirthday'" 
+									placeholder="" min="2002-01-01" max="2017-12-31" formControlName="childBirthday">
+							</div>
+							{{child.get('childBirthday').valid}} -->
+							<app-birthday-date-picker
+								[bodvalue]="child.get('childBirthdate')"
+							></app-birthday-date-picker>
+
+							<div 
+								class="form-group input-group btn-group"
+							>
+								
+								<div class="btn-group" ngbRadioGroup name="radioBasic">
+							    	<label class="btn btn-lg btn-outline-primary" ngbButtonLabel>
+							    		<input type="radio" [attr.id]="'child' + i + '_childGender'" class="form-control" value="boy" ngbButton formControlName="childGender">
+							    		<span class="button-text">Boy</span>
+							    	</label>
+									<label class="btn btn-lg btn-outline-primary" ngbButtonLabel>
+							    		<input type="radio" [attr.id]="'child' + i + '_childGender'" class="form-control" value="girl" ngbButton formControlName="childGender">
+							    		<span class="button-text">Girl</span>
+							    	</label>
+							    </div>
+							</div>
+							
+						</li>
+					</ul>
+			  	</div>
+			 </div>
+		</div>
+		
+	  	<div class="card form-group">
+	  		<div class="card-body">
+				<label class="title-text" for="lead_source">How did you hear about us?</label>
+				<select 
+					id="lead_source" 
+					class="form-control" 
+					formControlName="leadSource"
+				>
+					<option 
+						*ngFor="let source of leadKeys" 
+						[value]="source" 
+					>
+						{{source}}
+					</option>
+				</select>
+			</div>
+		</div>
+
+		<div class="card form-group">
+			<button type="submit" class="btn btn-block btn-primary">Check Me In</button>
+		</div>
+	</form>
+</div>

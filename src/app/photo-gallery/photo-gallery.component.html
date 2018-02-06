@@ -1,0 +1,8 @@
+<img [src]='photoUrl' [@photoState]='position' class="photo">
+
+<div class='buttons'>
+	<button (click)="changePosition('move')" class="button">Move</button>
+	<button (click)="changePosition('spin')" class="button">Spin</button>
+	<button (click)="changePosition('enlarge')" class="button">Scale</button>
+	<button (click)="changePosition('default')" class="button">Reset</button>
+</div>

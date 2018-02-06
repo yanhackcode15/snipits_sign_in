@@ -1,0 +1,140 @@
+<div class="container">
+	<form 
+		novalidate 
+		[formGroup]="myform" 
+		(ngSubmit)="signIn()"
+		autocomplete="my-password"
+	>
+		<p ngClass="alert-danger" *ngIf="myform.invalid">
+			{{noSubmit}}
+		</p>
+		<div class="card">
+			<div class="card-body">
+				<div 
+					class="form-group input-group" 
+					[ngClass]="{
+		  				'text-danger': code.invalid && (code.touched || code.dirty),
+		  				'text-success': code.valid && (code.touched || code.dirty)	
+					}"
+				>
+					<label 
+						class="input-group-addon" 
+						for="code"
+					>
+						* Family Code
+					</label>
+					<input 
+						type=text 
+						id="code" 
+						class="form-control" 
+						formControlName="code" 
+						required 
+						placeholder="Last 4 digits of your phone#"
+					>
+					<div class="form-control-feedback" *ngIf="code.errors && (code.touched || code.dirty)">
+						<p *ngIf="code.errors.required && (code.touched || code.dirty)">
+							Family code is required.
+						</p>
+						<p *ngIf="code.errors.minlength || code.errors.maxlength && (code.touched || code.dirty)">
+							Family code must be 4 digits.
+						</p>
+					</div>
+				</div>
+				<div 
+					class="form-group" 
+					[ngClass]="{
+		  				'text-danger': lastname.invalid && (lastname.touched || lastname.dirty),
+		  				'text-success': lastname.valid && (lastname.touched || lastname.dirty)	
+					}"
+				>
+					<div class="form-group input-group">
+						<label 
+							class="input-group-addon" 
+							for="lastName"
+						>
+							* Family's Last Name
+						</label>
+						<input 
+							type="text" 
+							id="lastName" 
+							class="form-control" formControlName="lastname" 
+						>
+					</div>
+					<div class="form-control-feedback" *ngIf="lastname.errors && (lastname.dirty || lastname.touched)">
+						<p *ngIf="lastname.errors.required && (lastname.touched || lastname.dirty)">
+							Last name is required.
+						</p>
+					</div>
+				</div>
+			
+				<div class="form-group">
+				    <label class="title-text" for="childCount">* How many children will be receiving service today?</label>
+				    <div id="childCount" class="btn-group count" ngbRadioGroup name="radioBasic">
+					    
+				    	<label class="btn btn-lg btn-outline-primary" ngbButtonLabel>
+				    		<input type="radio" class="form-control" name="childCount" value="1" ngbButton formControlName="childCount" (change)="updateCount()" required><span class="button-text">1</span>
+				    	</label>
+					    	
+						<label class="btn btn-lg btn-outline-primary" ngbButtonLabel>
+				    		<input type="radio" class="form-control" name="childCount" value="2" ngbButton formControlName="childCount" (change)="updateCount()" required><span class="button-text">2</span>
+				    	</label>
+				    	<label class="btn btn-lg btn-outline-primary" ngbButtonLabel>
+				    		<input type="radio" class="form-control" name="childCount" value="3" ngbButton formControlName="childCount" (change)="updateCount()" required><span class="button-text">3</span>
+				    	</label>
+				    	<label class="btn btn-lg btn-outline-primary" ngbButtonLabel>
+				    		<input type="radio" class="form-control" name="childCount" value="4" ngbButton formControlName="childCount" (change)="updateCount()" required><span class="button-text">4</span>
+				    	</label>
+				    	<label class="btn btn-lg btn-outline-primary" ngbButtonLabel>
+				    		<input type="radio" class="form-control" name="childCount" value="5" ngbButton formControlName="childCount" (change)="updateCount()" required><span class="button-text">5</span>
+				    	</label>
+					</div>
+				</div>
+			  	<div class="form-group"	>
+					<ul 
+						class="form-group list-group list-group-flush"
+						formArrayName="children" 
+						*ngFor="let child of children.controls.slice(0, childCount.value); let i=index;"
+					>
+						<li 
+							class="form-group list-group-item"
+							[formGroup]="child"
+						>
+							<div
+								[ngClass]="{
+										'text-danger': child.get('childName').invalid && (child.get('childName').touched || child.get('childName').dirty),
+										'text-success': child.get('childName').valid && (child.get('childName').touched || child.get('childName').dirty)
+								}"
+							>
+							
+								<div
+									class="form-group input-group"
+								>
+									<label class="input-group-addon" [attr.for]="'child' + i + '_childName'">* Child {{i+1}} First Name</label>
+									<input 
+										type="text" 
+										[attr.id]="'child' + i + '_childName'"
+										class="form-control" 
+										formControlName="childName" 
+										required>
+								</div>
+								<div class="form-control-feedback" *ngIf="child.errors && (child.touched || child.dirty)">
+									<p *ngIf="child.errors.required && (child.touched || child.dirty)">
+										Child's name is required.
+									</p>
+								</div>
+							</div>
+						</li>
+					</ul>
+			  	</div>
+			</div>
+	  	</div>
+		<div class="card form-group">
+			<button type="submit" class="btn btn-block btn-primary">Check Me In</button>
+		</div>
+	</form>
+</div>
+
+<!-- 
+** use (change) on radio input to capture the value change instead of (click). the clicks happens before the binded property value changes.
+** USE FORMARRAY for a group of input fields like a group of radio buttons to capture its value
+-->

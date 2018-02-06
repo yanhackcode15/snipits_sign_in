@@ -1,0 +1,15 @@
+.photo {
+	width: 525px;
+	height: 350px;
+	display: block;
+	margin: auto;
+	z-index: -1;
+}
+
+.buttons {
+	margin: 50px auto;
+	display: block;
+	padding: 100px 300px;
+	z-index: 10;
+}
+

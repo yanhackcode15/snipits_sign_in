@@ -1,0 +1,37 @@
+<div class="header">
+	<h1>
+	  Today's Waitlist
+	</h1>
+</div>
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th scope="col">#</th>
+			<th scope="col">Family Code</th>
+			<th scope="col">Last Name</th>
+			<th scope="col">Check-in Time Stamp</th>
+			<thead>
+				<th scope="col">Child's First Name & Status</th>
+			</thead>
+		</tr>
+	</thead>
+	<tbody>
+		<tr *ngFor="let family of families; let i = index;">
+			<th scope="row">{{ i+1 }}</th>
+			<td>{{family.data.code || 'N/A'}}</td>
+			<td>{{family.data.lastname}}</td>
+			<td>{{family.data.dateTime.string}}</td>
+			<td>
+				<tr *ngFor="let child of family.data.children; let j = index;">
+					<td>{{child.childName}}</td>
+					<td *ngIf="!child.status"><button class='btn btn-primary' (click)="checkInChild($event, family, i, child, j)">Check In</button></td>
+					<td *ngIf="child.status"><div>Checked In </div></td>
+					<td *ngIf="child.status"><button class='btn btn-primary' (click)="checkInChild($event, family, i, child, j)"> Undo </button></td>
+					<td *ngIf="!child.sync && child.sync!=null"><div>Sync Error</div></td>
+				</tr>
+					
+			</td>
+		</tr>
+		
+	</tbody>
+</table>

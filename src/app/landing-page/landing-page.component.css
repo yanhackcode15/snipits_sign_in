@@ -1,0 +1,15 @@
+.center {
+	margin: 20px 50px 20px 50px;
+}
+
+.heading-img {
+	margin: 40px 0 40px 0; 
+}
+
+.reset-a, .reset-a:hover, .reset-a:visited, .reset-a:focus, .reset-a:active  {
+  text-decoration: none;
+  color: inherit;
+  outline: 0;
+  cursor: auto;
+}
+

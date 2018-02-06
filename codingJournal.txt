@@ -1,0 +1,195 @@
+12/26: half day work, babysitting Sam
+* Prototypes: 
+http://javascriptissexy.com/javascript-prototype-in-plain-detailed-language/
+* What is factory method 
+https://medium.com/javascript-scene/javascript-factory-functions-vs-constructor-functions-vs-classes-2f22ceddf33e
+-->not very easy to understand factories
+
+http://www.dofactory.com/javascript/factory-method-design-pattern
+-->great factory object and factory method examples
+
+
+12/27
+* Review: 12/27
+- higher order functions, functions are values
+- Closure
+- Factory functions, continue the medium post from yesterday
+- Composition over classical inherentance 
+- .reduce
+- .filter
+- .reject
+- .find: same as filter but only return the first item, transform array to one item
+
+
+todo: 
+* register page finish adding validation
+* registeration confirmation page finish
+* start adding animation (add at least one)
+* read about design patterns (night)
+* doing code snippets with all reviewed: factory functions, closure, array operations (night)
+
+12/28: family time
+* reading about design patterns
+
+12/29: 
+* continue the animation work and finish
+* doing some coding snippets with array opeartions
+
+12/30
+* React native demo
+
+12/31:
+ice Skating
+
+1/1
+* React Native
+
+1/2/2018
+Accounting Snipits, verify expenses and send to corp
+
+1/3/2018
+* Run payroll and bi-weekly, monthly stats
+* snipits first time page clean-up: change gender to buttons, correct validation to make sure only required are validated, correct city/state regex pattern to be case insensitive, corrected childname, gender, birthday to have its own error validation instead of a group (it wasn't erroring out properly)
+* data input for spark - done
+
+1/4/2018
+* layout/formatting on forms - use input-group-addon
+make sure error messages are displaying properly and formated properly
+
+1/5/2018
+done
+* adjust error displaying timing to allow on blur using .touched 
+* adjust error message to display outside of the form control div so it falls on a new line
+
+1/6: 
+* minimum work, benji party
+
+1/7: 
+* sun: install spa platform, minmium work
+* wrked on KPI dash using google data studio
+
+1/8: 
+* no dev, store visits, work on store dashboard
+
+1/9/2018
+* integrated with google places api to do auto-complete
+* fixed issue with parsing google places returned address object and map into the database format for submission
+
+1/10/2018
+* clean up sign in form similar to what's been on new customer
+
+1/11/2018
+* store visit
+* 2 horus working on fixing google place plugin issue-address form control not found, get the formcontrol to bind to the DOM
+
+1/12/2018
+* finish styling the confirmation screen
+* Drive to big bear
+* address split error and allow address to be empty string
+* Fix the issue - children failing validation, zipcode not getting a value
+
+1/13/18
+* at big bear
+
+1/14/18
+* big bear
+* show alert only upon siging in, add close button, make button disappear 
+* display error message on empty fields upon signing-in
+
+1/15/18
+* make error message fixed and scroll page to the first field that errored out
+* show error message upon submitting the form - make required fields touched
+
+1/16/2018
+* change birthday date format
+* clean up styles, fix the placeholder for month select
+* add error message for birthday: require if any is filled out using formGroup validation
+* disable zooming
+test zooming disabled
+
+1/17/2018
+* created a new component waitlist
+* created dateStamperService to get today's date object and create object and string based on today.
+9-10:30 call manager, call Sol, talked to Sol about promotions, ptotential more hours, learn about her ihop work
+time log: 10: 30am start dev
+* got stuck on an issue caused from not using an arrow function and 'this' became null. the ocmpoennt property couldn't read out from a null 'this'
+* created view for the waitlist page to show rows of today's entries using orderBy and startAt() filter from firebase
+* added ability to show children's names as separate rows within the family row
+* Added 'check in ' button to check in the child and make the child subrow gray out or crossed out upon check in click and 
+
+1/18/18
+* store visit/payroll run
+* 4:30-5:00: worked on adding status but got an error with firebase update 
+
+1/19/18
+* fixed the firebase update error, added status flag for each child, added toggle function, display the check in button and undo button using ngIf
+* reload the families object respective child status value upon toggling so the view can update the button states
+* make the function call async
+
+1/20/18
+work at the shop to help out the party
+
+1/21/18
+Musuem
+home depot for carpet
+
+1/22/18
+* kids pointe, NWMS, 
+* job research, email, party page thinking, planning
+
+1/23/2018
+* muse.com - browsing companies, thinking about motivations, interests, looking at openings
+* following 1 hour tutorial about react to build my porfolio
+
+1/24/2018
+* watch react tutorial
+* start on resume/job scouting: linkedin message reply, outreach to HipHopDrive, Amanda, set up one meeting for next week
+* npm start //start the web server
+
+1/25/2018
+* installed gulp and other dependencies gulp needs to convert, minify, watch, suffix file name
+* import min verison of css into app.js
+* complete the react one page app tutorial: learn to use router, mixins, compile scss using gulp, learn css basics for a standard header nav links and logo. 
+
+1/29
+* make the page react to click righta way
+* fixed a bug
+
+1/30
+* paychecks/store visit
+* manager lunch
+
+2/1
+* store visit
+
+2/3 - 2/4
+* store interviews, work parties, relaxing
+
+2/5 Monday
+* QA'd the change to change the check in status without waiting for the promise to return
+
+todos
+* display error on the front end when promise doesn't return
+* start design the app to be the porfolio site
+* push it live and test on mobile screens
+* set up tablets
+* add a page to show customers the current customers in waiting 
+
+1/26
+* disable prompts or cached entry values for the form
+* add ability on create new page to select kids to be serviced today vs. for future
+* add a button on conf page to click to landing page and make the redirct happen automatically after 3 minutes
+* add ability to edit profile (a view and confirm page and/or edit after creation)
+
+* look into pulling firebase locally
+* clean up css (!important is a bad practice)
+
+Programming Theory Parking lot: 
+* Better understand click sequence, the events fired
+* null, undefined, empty in js
+* typescript
+* ES6 class definition using 'class' keyword
+* OOP: 
+* DI: dependency injection in js
+* what is AMD: 
+* Read about Design Patterns

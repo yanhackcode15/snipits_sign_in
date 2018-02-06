@@ -1,1 +1,61 @@
 /* You can add global styles to this file, and also import other style files */
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+html body {
+	background-color: #25283D;
+}
+
+.card {
+	margin: 10px;
+}
+
+.card-body {
+	background-color: #25283D;	
+	color: white;
+}
+
+.card-header {
+	background-color: #25283D !important;
+	color: white;
+}
+
+.list-group-item {
+	background-color: #25283D !important;	
+	border-top: 1px solid #FFFFFF !important;
+	padding: 10px 0px 10px 0px !important;
+}
+
+.btn-outline-primary, 
+.btn-outline-primary:hover,
+.btn-outline-primary:visited {
+    border-color: #AB9E38 !important;
+}
+
+.btn-outline-primary:hover,
+.btn-outline-primary.active {
+	background-color: #AB9E38 !important;
+	color: #000000 !important;
+}
+
+
+.title-text 
+{
+	color: white;
+}
+
+.button-text {
+	color: #AB9E38 !important;
+}
+
+.active .button-text {
+	color: #000000 !important;
+}
+
+.formError {
+	z-index: 1000;
+}
+

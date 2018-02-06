@@ -4,11 +4,28 @@
   <meta charset="utf-8">
   <title>SnipitsSignIn</title>
   <base href="/">
-
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta 
+  	name="viewport" 
+  	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+  />
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
 <body>
-  <app-root></app-root>
+	<app-root></app-root>
+
+	<script src="https://www.gstatic.com/firebasejs/4.8.0/firebase.js"></script>
+	<script>
+	  // Initialize Firebase
+	  var config = {
+	    apiKey: "AIzaSyDhCdLyt5M_AIx4s-z8SyEPrxyHSqtCm38",
+	    authDomain: "snipits-sign-in.firebaseapp.com",
+	    databaseURL: "https://snipits-sign-in.firebaseio.com",
+	    projectId: "snipits-sign-in",
+	    storageBucket: "snipits-sign-in.appspot.com",
+	    messagingSenderId: "129088095571"
+	  };
+	  firebase.initializeApp(config);
+	</script>
+  
 </body>
 </html>
