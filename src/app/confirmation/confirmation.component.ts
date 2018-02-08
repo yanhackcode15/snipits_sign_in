@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -13,8 +14,8 @@ export class ConfirmationComponent implements OnInit {
 	children: Array<string> = [];
 	timeStamp: string;
 
-	constructor(private route: ActivatedRoute) { 
-		this.route.queryParams.subscribe( params => {
+	constructor(private activeroute: ActivatedRoute, private router: Router) { 
+		this.activeroute.queryParams.subscribe( params => {
 			this.lastname = params.lastname;
 			this.fcode = params.code;
 			this.children = params.children.split(',');
@@ -23,6 +24,10 @@ export class ConfirmationComponent implements OnInit {
 	}
 
 	ngOnInit() {
+
+		setTimeout(() => {
+	        this.router.navigate(['']);
+	    }, 10000);  //5s
 	}
 
 	capitalizeFirst(str) {
@@ -35,6 +40,8 @@ export class ConfirmationComponent implements OnInit {
 		    }
 		}).join('');
 	}
+
+
 
 
 }

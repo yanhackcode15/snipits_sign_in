@@ -168,14 +168,31 @@ home depot for carpet
 2/5 Monday
 * QA'd the change to change the check in status without waiting for the promise to return
 
+2/6 Tuesday
+* git management of the snipits dashboard code
+* fixed permission issues
+* display error on the front end when promise doesn't return (can't completely test it, will need to simulate the return failing, but tested the negative case)
+* created heroku project
+* business related - Monica's termination
+* sam's swimming
+
+2/7 Wed
+* Termination, party inquirie, handle bad service complaints, put together termination folder, started party docus with mini party structure
+* 3:45pm started programming - added auto-redirect on confirmation page with 5 sec delay
+* added button to go back to home from create new and sign in pages
+* added message about redirect within 10 second
+* added home button on confirmation page as a catch all.
+* changed button text on landing page
+
 todos
-* display error on the front end when promise doesn't return
-* start design the app to be the porfolio site
 * push it live and test on mobile screens
+* change the background image of the landing page 
+* start design the app to be the porfolio site
+* set up google hangout
 * set up tablets
 * add a page to show customers the current customers in waiting 
 
-1/26
+
 * disable prompts or cached entry values for the form
 * add ability on create new page to select kids to be serviced today vs. for future
 * add a button on conf page to click to landing page and make the redirct happen automatically after 3 minutes
