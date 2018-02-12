@@ -17,7 +17,7 @@ import {
 } from '@angular/forms';
 import { } from '@types/googlemaps';
 import { MapsAPILoader } from '@agm/core';
-// declare var google: any;
+declare var google: any;
 
 @Component({
   selector: 'app-address-auto-complete',
