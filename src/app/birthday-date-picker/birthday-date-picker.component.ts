@@ -84,10 +84,10 @@ import {ReactiveFormsModule,
 export class BirthdayDatePickerComponent implements OnInit {
 	@Input() bodvalue: FormControl;
 	months: Array<string>;
-	private birthdayGroup: FormGroup;
-	private birthMonth: FormControl;
-	private birthDate: FormControl;
-	private birthYear: FormControl;
+	public birthdayGroup: FormGroup;
+	public birthMonth: FormControl;
+	public birthDate: FormControl;
+	public birthYear: FormControl;
 
 	constructor() { }
 
