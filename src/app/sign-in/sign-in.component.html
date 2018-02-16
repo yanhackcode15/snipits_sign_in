@@ -4,6 +4,7 @@
 		[formGroup]="myform" 
 		(ngSubmit)="signIn()"
 		autocomplete="my-password"
+		(keydown.enter)="onKeydown($event)"
 	>
 		<p ngClass="alert-danger" *ngIf="myform.invalid">
 			{{noSubmit}}

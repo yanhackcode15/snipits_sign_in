@@ -123,5 +123,10 @@ export class SignInComponent implements OnInit {
 
 	}
 
+	onKeydown($e) {
+		$e.preventDefault();
+       	return false;
+	}
+
 }
 
