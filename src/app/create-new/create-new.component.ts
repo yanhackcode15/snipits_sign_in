@@ -311,6 +311,11 @@ export class CreateNewComponent implements OnInit {
 		return valid ? null : {'notValidBirthday': {value: control.value}};
 	}
 
+	onKeydown($e) {
+		$e.preventDefault();
+       	return false;
+	}
+
 	// onNotify(addr:object):void {
  //    	// alert(addr);
  //    	this.mailingAddr = addr;

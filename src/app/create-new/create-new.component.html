@@ -4,6 +4,7 @@
 		[formGroup]="myform2" 
 		(ngSubmit)="signIn()"
 		autocomplete="nofill"
+		(keydown.enter)="onKeydown($event)"
 	>
 		<div 
 			class="alert alert-danger formError fixed-top"
