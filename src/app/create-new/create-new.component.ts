@@ -311,9 +311,31 @@ export class CreateNewComponent implements OnInit {
 		return valid ? null : {'notValidBirthday': {value: control.value}};
 	}
 
-	onKeydown($e) {
-		$e.preventDefault();
-       	return false;
+	onKeydown(e) {
+        e.preventDefault();
+        let control:any;
+        control = e.srcElement.nextElementSibling;
+        while (true){                
+            if (control) {
+              	if ((!control.hidden) && 
+              		(control.nodeName == 'INPUT' || 
+                 	control.nodeName == 'SELECT' || 
+                 	control.nodeName == 'BUTTON' || 
+                 	control.nodeName == 'TEXTAREA')) 
+              	{
+                    control.focus();
+                    return;
+                }
+                else {
+                    control = control.nextElementSibling;
+                }                         
+            }
+            else {
+                console.log('close keyboard');
+                return;
+            }            
+        }
+
 	}
 
 	// onNotify(addr:object):void {

@@ -32,6 +32,7 @@ import { PhotoGalleryComponent } from './photo-gallery/photo-gallery.component';
 import { AddressAutoCompleteComponent } from './address-auto-complete/address-auto-complete.component';
 import { BirthdayDatePickerComponent } from './birthday-date-picker/birthday-date-picker.component';
 import { WaitlistComponent } from './waitlist/waitlist.component';
+import { EnterKeystrokeToTabComponent } from './enter-keystroke-to-tab/enter-keystroke-to-tab.component';
 
 
 
@@ -47,6 +48,7 @@ import { WaitlistComponent } from './waitlist/waitlist.component';
     AddressAutoCompleteComponent,
     BirthdayDatePickerComponent,
     WaitlistComponent,
+    EnterKeystrokeToTabComponent,
   ],
   imports: [
     AgmCoreModule.forRoot({
