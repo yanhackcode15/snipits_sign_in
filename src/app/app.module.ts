@@ -25,6 +25,7 @@ import { CreateNewComponent } from './create-new/create-new.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { ConfirmationComponent } from './confirmation/confirmation.component';
 import {DataService} from './data.service';
+import {UtilityService} from './utility.service';
 import { DateStamperService } from './date-stamper.service';
 
 import { PopOverComponent } from './pop-over/pop-over.component';
@@ -32,7 +33,6 @@ import { PhotoGalleryComponent } from './photo-gallery/photo-gallery.component';
 import { AddressAutoCompleteComponent } from './address-auto-complete/address-auto-complete.component';
 import { BirthdayDatePickerComponent } from './birthday-date-picker/birthday-date-picker.component';
 import { WaitlistComponent } from './waitlist/waitlist.component';
-import { EnterKeystrokeToTabComponent } from './enter-keystroke-to-tab/enter-keystroke-to-tab.component';
 
 
 
@@ -48,7 +48,6 @@ import { EnterKeystrokeToTabComponent } from './enter-keystroke-to-tab/enter-key
     AddressAutoCompleteComponent,
     BirthdayDatePickerComponent,
     WaitlistComponent,
-    EnterKeystrokeToTabComponent,
   ],
   imports: [
     AgmCoreModule.forRoot({
@@ -65,7 +64,7 @@ import { EnterKeystrokeToTabComponent } from './enter-keystroke-to-tab/enter-key
     // FormArray,
     // NgBootstrapFormValidationModule.forRoot(),
   ],
-  providers: [DataService, DateStamperService],
+  providers: [DataService, DateStamperService, UtilityService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

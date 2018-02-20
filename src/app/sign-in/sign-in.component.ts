@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {DataService} from '../data.service';
 import { DateStamperService } from '../date-stamper.service';
+import {UtilityService} from '../utility.service';
 
 import {Router} from '@angular/router';
 import {ReactiveFormsModule, 
@@ -20,6 +21,7 @@ import {ReactiveFormsModule,
 	providers: [
 		DataService,
 		DateStamperService,
+		UtilityService,
 	],
 })
 
@@ -32,7 +34,7 @@ export class SignInComponent implements OnInit {
 	family: any;
 	noSubmit: any;
 
-	constructor(private dataService: DataService, private router: Router, private dateStamperService: DateStamperService,) {
+	constructor(private dataService: DataService, private router: Router, private dateStamperService: DateStamperService, private utilityService: UtilityService,) {
 		
 	}
 
@@ -123,9 +125,8 @@ export class SignInComponent implements OnInit {
 
 	}
 
-	onKeydown($e) {
-		$e.preventDefault();
-       	return false;
+	onKeydown(e) {
+		this.utilityService.onKeydown(e);
 	}
 
 }
