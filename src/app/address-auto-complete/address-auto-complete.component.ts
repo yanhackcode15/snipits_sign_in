@@ -38,7 +38,7 @@ declare var google: any;
 				autocapitalize="off" 
 				spellcheck="off" 
 				type="text" 
-				class="form-control" 
+				class="form-control form-control-lg" 
 				#addressSearchEl 
 				id="address" 
 				[formControl]="address"

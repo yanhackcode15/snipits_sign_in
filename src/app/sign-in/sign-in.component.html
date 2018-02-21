@@ -27,7 +27,7 @@
 					<input 
 						type=text 
 						id="code" 
-						class="form-control" 
+						class="form-control form-control-lg" 
 						formControlName="code" 
 						required 
 						placeholder="Last 4 digits of your phone#"
@@ -58,7 +58,8 @@
 						<input 
 							type="text" 
 							id="lastName" 
-							class="form-control" formControlName="lastname" 
+							class="form-control form-control-lg" 
+							formControlName="lastname" 
 						>
 					</div>
 					<div class="form-control-feedback" *ngIf="lastname.errors && (lastname.dirty || lastname.touched)">
@@ -114,7 +115,7 @@
 									<input 
 										type="text" 
 										[attr.id]="'child' + i + '_childName'"
-										class="form-control" 
+										class="form-control form-control-lg" 
 										formControlName="childName" 
 										required>
 								</div>
@@ -130,10 +131,10 @@
 			</div>
 	  	</div>
 		<div class="card form-group">
-			<button type="submit" class="btn btn-block btn-primary">Check Me In</button>
+			<button type="submit" class="btn btn-block btn-lg btn-primary">Check Me In</button>
 		</div>
 		<div class="card form-group">
-			<button type="button" class="btn btn-block btn-secondary" [routerLink]="['']">Back to Home</button>
+			<button type="button" class="btn btn-block btn-lg btn-secondary" [routerLink]="['']">Back to Home</button>
 		</div>
 	</form>
 </div>
