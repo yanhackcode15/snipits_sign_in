@@ -38,7 +38,7 @@
 							#lastnameSearchEl
 							type="text" 
 							id="lastname" 
-							class="form-control" 
+							class="form-control form-control-lg" 
 							formControlName="lastname"
 						>
 					</div>
@@ -65,7 +65,7 @@
 							#phoneSearchEl
 							id="phone" 
 							type="text" 
-							class="form-control" 
+							class="form-control form-control-lg" 
 							formControlName="phone" 
 							placeholder="10 digits no space or dash"
 						>
@@ -91,7 +91,7 @@
 							#emailSearchEl
 							type=email 
 							id="email" 
-							class="form-control" 
+							class="form-control form-control-lg" 
 							formControlName="email" 
 							placeholder="xxx@xxx.xxx"
 						>
@@ -164,7 +164,7 @@
 									<input
 										#childNameSearchEl
 										type="text"
-										class="form-control"
+										class="form-control form-control-lg"
 										[attr.id]="'child' + i + '_childName'"
 										formControlName="childName"
 										required
@@ -221,7 +221,7 @@
 				<label class="title-text" for="lead_source">How did you hear about us?</label>
 				<select 
 					id="lead_source" 
-					class="form-control" 
+					class="form-control form-control-lg" 
 					formControlName="leadSource"
 				>
 					<option 
@@ -235,10 +235,10 @@
 		</div>
 
 		<div class="card form-group">
-			<button type="submit" class="btn btn-block btn-primary">Check Me In</button>
+			<button type="submit" class="btn btn-block btn-lg btn-primary">Check Me In</button>
 		</div>
 		<div class="card form-group">
-			<button type="button" class="btn btn-block btn-secondary" [routerLink]="['']">Back to Home</button>
+			<button type="button" class="btn btn-block btn-lg btn-secondary" [routerLink]="['']">Back to Home</button>
 		</div>
 	</form>
 </div>

@@ -32,7 +32,7 @@ import {ReactiveFormsModule,
   			<label class="input-group-addon" for="birthMonth">Child's Birthday</label>
 	  		<select 
 	  			id="birthMonth" 
-				class="form-control squareBorder"
+				class="form-control form-control-lg squareBorder"
 	  			[formControl]="birthMonth"
 	  			(change)="handleChange($event)"
 	  		>
@@ -42,7 +42,7 @@ import {ReactiveFormsModule,
 			<input 
 				type=text  
 				id="birthDate" 
-				class="form-control"
+				class="form-control form-control-lg"
 				[formControl]="birthDate"
 				placeholder="DD"
 				(change)="handleChange($event)"
@@ -50,7 +50,7 @@ import {ReactiveFormsModule,
 	  		<input 
 				type=text
 				id="birthYear" 
-				class="form-control"  
+				class="form-control form-control-lg"  
 				[formControl]="birthYear"
 				placeholder="YYYY"
 				(change)="handleChange($event)"
