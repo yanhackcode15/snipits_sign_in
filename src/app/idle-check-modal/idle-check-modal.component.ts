@@ -31,11 +31,12 @@ export class IdleCheckModalComponent implements OnInit {
 	@ViewChild('content') content: TemplateRef<any>;
 	closeResult: string;
 	modalReference: any;
-	id: any;
+	modalTimerId: any;
+	toHomeTimerId: any;
 	constructor( private modalService: NgbModal, private router: Router, ) { }
 
 	ngAfterViewInit() {
-    	this.id = setTimeout(() => {
+    	this.modalTimerId = setTimeout(() => {
 	        this.open(this.content);
 	    }, 10000);  //5s
   	}
@@ -44,24 +45,22 @@ export class IdleCheckModalComponent implements OnInit {
 	}
 
 	open(content) {
+		console.log('I was opened')
 		this.modalReference = this.modalService.open(content);
+		this.toHomeTimerId = setTimeout(() => {
+	        this.routeToHome(null);
+	    }, 10000); 
 		this.modalReference.result.then((result) => {
 			// this.closeResult = `Closed with: ${result}`;
+			//this call back is called when a modal is closed
+			clearTimeout(this.toHomeTimerId);
 			
 		}, (reason) => {
+			//this callback is called when the modal is dismissed
 			// this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
 			this.cancelIdle(null);
+			clearTimeout(this.toHomeTimerId);
 		});
-	}
-
-	private getDismissReason(reason: any): string {
-		if (reason === ModalDismissReasons.ESC) {
-			return 'by pressing ESC';
-		} else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-			return 'by clicking on a backdrop';
-		} else {
-			return  `with: ${reason}`;
-		}
 	}
 
 	closeModal(){
@@ -70,18 +69,28 @@ export class IdleCheckModalComponent implements OnInit {
 
 	}
 	cancelIdle($e) {
-		clearTimeout(this.id);
-		this.id = setTimeout(() => {
+		clearTimeout(this.modalTimerId);
+		this.modalTimerId = setTimeout(() => {
 	        this.open(this.content);
 	    }, 10000);  
 	}
 
 	routeToHome($e) {
-		clearTimeout(this.id);
+		clearTimeout(this.modalTimerId);
 		this.modalReference.close();
 		this.router.navigate(['']);
 
 	}
+
+	// private getDismissReason(reason: any): string {
+	// 	if (reason === ModalDismissReasons.ESC) {
+	// 		return 'by pressing ESC';
+	// 	} else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+	// 		return 'by clicking on a backdrop';
+	// 	} else {
+	// 		return  `with: ${reason}`;
+	// 	}
+	// }
 
 
 }
