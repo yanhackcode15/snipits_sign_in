@@ -1,6 +1,7 @@
 import {Component, 
 		OnInit, 
 		ElementRef, 
+		TemplateRef,
 		NgZone, 
 		ViewChild,
 		Inject,
@@ -36,6 +37,8 @@ declare var window: any;
  	// directives: [AddressAutoCompleteComponent],
 })
 export class CreateNewComponent implements OnInit {
+	@ViewChild('modal') 
+	public modal: TemplateRef<any>;
 
 	@ViewChild("lastnameSearchEl")
 	public lastnameSearchEl: ElementRef;

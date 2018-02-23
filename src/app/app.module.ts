@@ -17,6 +17,8 @@ import {
 import {HttpClientModule} from '@angular/common/http';
 // import { NgBootstrapFormValidationModule } from 'ng-bootstrap-form-validation';
 import { AgmCoreModule } from '@agm/core';
+import {TouchEventModule} from "ng2-events/lib/touch";
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -33,6 +35,8 @@ import { PhotoGalleryComponent } from './photo-gallery/photo-gallery.component';
 import { AddressAutoCompleteComponent } from './address-auto-complete/address-auto-complete.component';
 import { BirthdayDatePickerComponent } from './birthday-date-picker/birthday-date-picker.component';
 import { WaitlistComponent } from './waitlist/waitlist.component';
+import { IdleCheckModalComponent } from './idle-check-modal/idle-check-modal.component';
+
 
 
 
@@ -48,6 +52,7 @@ import { WaitlistComponent } from './waitlist/waitlist.component';
     AddressAutoCompleteComponent,
     BirthdayDatePickerComponent,
     WaitlistComponent,
+    IdleCheckModalComponent,
   ],
   imports: [
     AgmCoreModule.forRoot({
@@ -61,6 +66,7 @@ import { WaitlistComponent } from './waitlist/waitlist.component';
     HttpClientModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
+    TouchEventModule,
     // FormArray,
     // NgBootstrapFormValidationModule.forRoot(),
   ],
