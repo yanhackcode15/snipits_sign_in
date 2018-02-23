@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" (touchstart)="modal.cancelIdle($event)" (keydown)="modal.cancelIdle()">
 	<form 
 		novalidate 
 		[formGroup]="myform2" 
@@ -241,4 +241,6 @@
 			<button type="button" class="btn btn-block btn-lg btn-secondary" [routerLink]="['']">Back to Home</button>
 		</div>
 	</form>
+
+	<app-idle-check-modal #modal></app-idle-check-modal>
 </div>
