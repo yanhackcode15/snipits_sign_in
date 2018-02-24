@@ -1,4 +1,8 @@
 <div class="container" (touchstart)="modal.cancelIdle($event)" (keydown)="modal.cancelIdle()">
+	<div>
+		<h3 class="heading">It's great to see you again!</h3>
+		<p class="heading">You or your family must have visited us at least once in order to check in. If it's your first time, please click <a (click)="clearTimeout(modal.modalTimerId)" [routerLink]="['/create-new']">here</a> to go to the first time user page. </p>
+	</div>
 	<form 
 		novalidate 
 		[formGroup]="myform" 
@@ -6,9 +10,18 @@
 		autocomplete="my-password"
 		(keydown.enter)="onKeydown($event)"
 	>
-		<p ngClass="alert-danger" *ngIf="myform.invalid">
+		<div 
+			class="alert alert-danger formError fixed-top"
+			*ngIf="error"
+			role="alert"
+		>
+			<button type="button" class="close" aria-label="Close" (click)=closeAlert()>
+			  <span aria-hidden="true">&times;</span>
+			</button>
+			<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
 			{{noSubmit}}
-		</p>
+
+		</div>
 		<div class="card">
 			<div class="card-body">
 				<div 
@@ -134,7 +147,7 @@
 			<button type="submit" class="btn btn-block btn-lg btn-primary">Check Me In</button>
 		</div>
 		<div class="card form-group">
-			<button type="button" class="btn btn-block btn-lg btn-secondary" [routerLink]="['']">Back to Home</button>
+			<button type="button" class="btn btn-block btn-lg btn-secondary" (click)="clearTimeout(modal.modalTimerId)" [routerLink]="['']">Back to Home</button>
 		</div>
 	</form>
 	<app-idle-check-modal #modal></app-idle-check-modal>

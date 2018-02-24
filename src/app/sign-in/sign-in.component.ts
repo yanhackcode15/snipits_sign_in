@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import {DataService} from '../data.service';
 import { DateStamperService } from '../date-stamper.service';
 import {UtilityService} from '../utility.service';
+import {IdleCheckModalComponent} from '../idle-check-modal/idle-check-modal.component';
 
 import {Router} from '@angular/router';
 import {ReactiveFormsModule, 
@@ -32,7 +33,11 @@ export class SignInComponent implements OnInit {
 	childCount: FormControl;
 	children: FormArray;
 	family: any;
+	formSubmit: boolean = false; 
 	noSubmit: any;
+	error: boolean;
+	
+	@ViewChild(IdleCheckModalComponent) modal: IdleCheckModalComponent;
 
 	constructor(private dataService: DataService, private router: Router, private dateStamperService: DateStamperService, private utilityService: UtilityService,) {
 		
@@ -91,6 +96,7 @@ export class SignInComponent implements OnInit {
 		let paramsObj: any = {};
 
 		if (this.myform.valid) {
+			clearTimeout(this.modal.modalTimerId);
 			this.children.controls.forEach((childGroup)=>{
 				children.push({
 					childName: childGroup.get('childName').value,
@@ -119,10 +125,16 @@ export class SignInComponent implements OnInit {
 				.then( ()=>this.router.navigate(['confirmation'], {queryParams: paramsObj} ) )
 		}
 		else {
+			// this.formSubmit = true;
+			this.error = true; 
 			this.noSubmit = "Please make sure to fill in all required fields and check for errors.";
 		}
 		
 
+	}
+
+	closeAlert() {
+		this.error = false;
 	}
 
 	onKeydown(e) {

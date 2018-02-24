@@ -207,9 +207,15 @@ Long weekend - no coding
 * have the cancel timer function attach to the event listener. The cancel timer will cancel the current timer by ID and restart a new timer.
 * Fixed issues with modal re-appearing on home page.
 * Add a auto redirect upon no response received
-
-todos
+* fix timer issue
 * push it live and test on mobile screens
+
+2/23 Friday
+* Add copy about optional fields to encourage email and mailing address
+todos
+* fix the error display issue
+* fixing the modal appearing, need to kill the setTime ID where it shouldn't appear
+
 * change the background image of the landing page 
 * start design the app to be the porfolio site
 * set up google hangout

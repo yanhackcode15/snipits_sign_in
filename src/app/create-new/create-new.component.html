@@ -1,4 +1,8 @@
 <div class="container" (touchstart)="modal.cancelIdle($event)" (keydown)="modal.cancelIdle()">
+	<div>
+		<h3 class="heading">Welcome To Snipits!</h3>
+		<p class="heading">It looks like it's your first time. We'll be creating a family profile and check in your party. If you have been with us before, please click <a (click)="clearTimeout(modal.modalTimerId)" [routerLink]="['/sign-in']">here</a> to go to the returning user page. </p>
+	</div>
 	<form 
 		novalidate 
 		[formGroup]="myform2" 
@@ -85,6 +89,9 @@
 		  				'text-success': email.valid && (email.touched || email.dirty)	
 					}"
 				>
+					<div>
+						<p>To receive updates and promotions, we need both your email and mailing address.</p>
+					</div>
 					<div class="form-group input-group">
 						<label class="input-group-addon" for="email">Email Address</label>
 						<input 
@@ -190,6 +197,10 @@
 									placeholder="" min="2002-01-01" max="2017-12-31" formControlName="childBirthday">
 							</div>
 							{{child.get('childBirthday').valid}} -->
+
+							<div>
+								<p>To receive your birthday promotion, please fill all three fields.</p>
+							</div>
 							<app-birthday-date-picker
 								[bodvalue]="child.get('childBirthdate')"
 							></app-birthday-date-picker>
@@ -238,7 +249,7 @@
 			<button type="submit" class="btn btn-block btn-lg btn-primary">Check Me In</button>
 		</div>
 		<div class="card form-group">
-			<button type="button" class="btn btn-block btn-lg btn-secondary" [routerLink]="['']">Back to Home</button>
+			<button type="button" class="btn btn-block btn-lg btn-secondary" (click)="clearTimeout(modal.modalTimerId)" [routerLink]="['']">Back to Home</button>
 		</div>
 	</form>
 

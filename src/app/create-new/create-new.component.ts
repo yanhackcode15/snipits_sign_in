@@ -9,6 +9,7 @@ import {Component,
 import {DataService} from '../data.service';
 import { DateStamperService } from '../date-stamper.service';
 import {UtilityService} from '../utility.service';
+import {IdleCheckModalComponent} from '../idle-check-modal/idle-check-modal.component';
 
 import {Router} from '@angular/router';
 import {ReactiveFormsModule, 
@@ -37,8 +38,11 @@ declare var window: any;
  	// directives: [AddressAutoCompleteComponent],
 })
 export class CreateNewComponent implements OnInit {
-	@ViewChild('modal') 
-	public modal: TemplateRef<any>;
+
+	@ViewChild(IdleCheckModalComponent) modal: IdleCheckModalComponent;
+
+	// @ViewChild('modal') 
+	// public modal: TemplateRef<any>;
 
 	@ViewChild("lastnameSearchEl")
 	public lastnameSearchEl: ElementRef;
@@ -195,6 +199,7 @@ export class CreateNewComponent implements OnInit {
 		let fcode: any = this.phone.value.slice(length-4, length);
 
 		if (this.myform2.valid) {
+			clearTimeout(this.modal.modalTimerId);
 			this.children.controls.forEach((childGroup)=>{
 				children.push({
 					childName: childGroup.get('childName').value,

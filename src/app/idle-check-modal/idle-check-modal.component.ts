@@ -33,12 +33,14 @@ export class IdleCheckModalComponent implements OnInit {
 	modalReference: any;
 	modalTimerId: any;
 	toHomeTimerId: any;
+	modalTimer: any=50000;
+	toHomeTimer: any=10000;
 	constructor( private modalService: NgbModal, private router: Router, ) { }
 
 	ngAfterViewInit() {
     	this.modalTimerId = setTimeout(() => {
 	        this.open(this.content);
-	    }, 10000);  //5s
+	    }, this.modalTimer);  //5s
   	}
 
 	ngOnInit() {
@@ -49,7 +51,7 @@ export class IdleCheckModalComponent implements OnInit {
 		this.modalReference = this.modalService.open(content);
 		this.toHomeTimerId = setTimeout(() => {
 	        this.routeToHome(null);
-	    }, 10000); 
+	    }, this.toHomeTimer); 
 		this.modalReference.result.then((result) => {
 			// this.closeResult = `Closed with: ${result}`;
 			//this call back is called when a modal is closed
@@ -72,7 +74,7 @@ export class IdleCheckModalComponent implements OnInit {
 		clearTimeout(this.modalTimerId);
 		this.modalTimerId = setTimeout(() => {
 	        this.open(this.content);
-	    }, 10000);  
+	    }, this.modalTimer);  
 	}
 
 	routeToHome($e) {
