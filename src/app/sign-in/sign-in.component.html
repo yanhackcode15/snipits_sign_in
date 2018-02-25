@@ -1,7 +1,7 @@
 <div class="container" (touchstart)="modal.cancelIdle($event)" (keydown)="modal.cancelIdle()">
 	<div>
 		<h3 class="heading">It's great to see you again!</h3>
-		<p class="heading">You or your family must have visited us at least once in order to check in. If it's your first time, please click <a (click)="clearTimeout(modal.modalTimerId)" [routerLink]="['/create-new']">here</a> to go to the first time user page. </p>
+		<p class="heading">You or your family must have visited us at least once in order to check in. If it's your first time, please click <a (click)="modal.clearModalTimer(modal.modalTimerId)" [routerLink]="['/create-new']">here</a> to go to the first time user page. </p>
 	</div>
 	<form 
 		novalidate 
