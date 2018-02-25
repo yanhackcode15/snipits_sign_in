@@ -147,7 +147,7 @@
 			<button type="submit" class="btn btn-block btn-lg btn-primary">Check Me In</button>
 		</div>
 		<div class="card form-group">
-			<button type="button" class="btn btn-block btn-lg btn-secondary" (click)="clearTimeout(modal.modalTimerId)" [routerLink]="['']">Back to Home</button>
+			<button type="button" class="btn btn-block btn-lg btn-secondary" (click)="modal.clearModalTimer(modal.modalTimerId)" [routerLink]="['']">Back to Home</button>
 		</div>
 	</form>
 	<app-idle-check-modal #modal></app-idle-check-modal>

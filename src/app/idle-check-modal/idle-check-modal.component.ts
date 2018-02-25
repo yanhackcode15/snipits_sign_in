@@ -84,6 +84,10 @@ export class IdleCheckModalComponent implements OnInit {
 
 	}
 
+	clearModalTimer(timerId) {
+		clearTimeout(timerId);
+	}
+
 	// private getDismissReason(reason: any): string {
 	// 	if (reason === ModalDismissReasons.ESC) {
 	// 		return 'by pressing ESC';
