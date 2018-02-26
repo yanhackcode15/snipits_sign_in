@@ -216,6 +216,20 @@ todos
 * fix the error display issue
 * fixing the modal appearing, need to kill the setTime ID where it shouldn't appear
 
+2/25 Sunday
+* add onunload event hook and removed the anchor link, button event hook to cancel the timer. The modal idle timer is canceled upon navigating away from the page 
+
+2/26 Monday
+* changed undo button color to gray - check
+
+* fixed the sync error on waitlist page
+
+* waitlist page must update in real time
+* write a script to download customer information and save it to firebase
+* write a script to download from firebase to excel and to inject into portal
+
+
+Parking Lot: 
 * change the background image of the landing page 
 * start design the app to be the porfolio site
 * set up google hangout
