@@ -1,7 +1,7 @@
-<div class="container" (touchstart)="modal.cancelIdle($event)" (keydown)="modal.cancelIdle()">
+<div class="container" (touchstart)="modal.cancelIdle($event)" (keydown)="modal.cancelIdle()" (onunload)="modal.clearModalTimers(modal.modalTimerArry)">
 	<div>
 		<h3 class="heading">Welcome To Snipits!</h3>
-		<p class="heading">It looks like it's your first time. We'll be creating a family profile and check in your party. If you have been with us before, please click <a (click)="modal.clearModalTimers(modal.modalTimerArry)" [routerLink]="['/sign-in']">here</a> to go to the returning user page. </p>
+		<p class="heading">It looks like it's your first time. We'll be creating a family profile and check in your party. If you have been with us before, please click <a [routerLink]="['/sign-in']">here</a> to go to the returning user page. </p>
 	</div>
 	<form 
 		novalidate 
@@ -249,7 +249,7 @@
 			<button type="submit" class="btn btn-block btn-lg btn-primary">Check Me In</button>
 		</div>
 		<div class="card form-group">
-			<button type="button" class="btn btn-block btn-lg btn-secondary" (click)="modal.clearModalTimers(modal.modalTimerArry)" [routerLink]="['']">Back to Home</button>
+			<button type="button" class="btn btn-block btn-lg btn-secondary" [routerLink]="['']">Back to Home</button>
 		</div>
 	</form>
 
