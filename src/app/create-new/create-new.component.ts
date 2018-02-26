@@ -199,7 +199,9 @@ export class CreateNewComponent implements OnInit {
 		let fcode: any = this.phone.value.slice(length-4, length);
 
 		if (this.myform2.valid) {
-			clearTimeout(this.modal.modalTimerId);
+			// clearTimeout(this.modal.modalTimerId);
+			this.modal.modalTimerArry.forEach((timerID)=>{clearTimeout(timerID)});
+			this.modal.toHomeTimerArry.forEach((timerID)=>{clearTimeout(timerID)});
 			this.children.controls.forEach((childGroup)=>{
 				children.push({
 					childName: childGroup.get('childName').value,
@@ -299,23 +301,23 @@ export class CreateNewComponent implements OnInit {
 	allOrNothing (control: AbstractControl): {[key: string]: any} {
 	  	let valid = true;
 	  	let birthArry = control.value.split('/');
-	  	console.log('birthArry', birthArry);
+	  	// console.log('birthArry', birthArry);
 
 		if (birthArry[0] !== '' && birthArry[0] !== 'Month' && (birthArry[1] !== '') && (birthArry[2] !== '')) {
 			valid = true;
-			console.log('if', valid);
+			// console.log('if', valid);
 		}
 		else if ((birthArry[0] === '') && (birthArry[1] === '') && (birthArry[2]=== '')) { //all must be empty
 			valid = true;
-			console.log('else if', valid);
+			// console.log('else if', valid);
 		}
 		else if (birthArry.length===1) {
 			valid = true;
-			console.log('else if', valid);
+			// console.log('else if', valid);
 		}
 		else { 
 			valid = false;
-			console.log('else', valid);
+			// console.log('else', valid);
 		}
 	
 		return valid ? null : {'notValidBirthday': {value: control.value}};

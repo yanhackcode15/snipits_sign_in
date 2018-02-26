@@ -36,7 +36,7 @@ export class SignInComponent implements OnInit {
 	formSubmit: boolean = false; 
 	noSubmit: any;
 	error: boolean;
-	
+
 	@ViewChild(IdleCheckModalComponent) modal: IdleCheckModalComponent;
 
 	constructor(private dataService: DataService, private router: Router, private dateStamperService: DateStamperService, private utilityService: UtilityService,) {
@@ -96,7 +96,8 @@ export class SignInComponent implements OnInit {
 		let paramsObj: any = {};
 
 		if (this.myform.valid) {
-			clearTimeout(this.modal.modalTimerId);
+			this.modal.modalTimerArry.forEach((timerID)=>{clearTimeout(timerID)});
+			this.modal.toHomeTimerArry.forEach((timerID)=>{clearTimeout(timerID)});
 			this.children.controls.forEach((childGroup)=>{
 				children.push({
 					childName: childGroup.get('childName').value,

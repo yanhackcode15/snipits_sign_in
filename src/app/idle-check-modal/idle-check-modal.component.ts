@@ -32,7 +32,9 @@ export class IdleCheckModalComponent implements OnInit {
 	closeResult: string;
 	modalReference: any;
 	modalTimerId: any;
+	modalTimerArry: any=[];
 	toHomeTimerId: any;
+	toHomeTimerArry: any=[];
 	modalTimer: any=50000;
 	toHomeTimer: any=10000;
 	constructor( private modalService: NgbModal, private router: Router, ) { }
@@ -41,6 +43,7 @@ export class IdleCheckModalComponent implements OnInit {
     	this.modalTimerId = setTimeout(() => {
 	        this.open(this.content);
 	    }, this.modalTimer);  //5s
+	    this.modalTimerArry.push(this.modalTimerId);
   	}
 
 	ngOnInit() {
@@ -52,6 +55,8 @@ export class IdleCheckModalComponent implements OnInit {
 		this.toHomeTimerId = setTimeout(() => {
 	        this.routeToHome(null);
 	    }, this.toHomeTimer); 
+
+	    this.toHomeTimerArry.push(this.toHomeTimerId);
 		this.modalReference.result.then((result) => {
 			// this.closeResult = `Closed with: ${result}`;
 			//this call back is called when a modal is closed
@@ -75,6 +80,7 @@ export class IdleCheckModalComponent implements OnInit {
 		this.modalTimerId = setTimeout(() => {
 	        this.open(this.content);
 	    }, this.modalTimer);  
+	    this.modalTimerArry.push(this.modalTimerId);
 	}
 
 	routeToHome($e) {
@@ -84,8 +90,8 @@ export class IdleCheckModalComponent implements OnInit {
 
 	}
 
-	clearModalTimer(timerId) {
-		clearTimeout(timerId);
+	clearModalTimers(timerIdArry) {
+		timerIdArry.forEach((timerId)=>clearTimeout(timerId));
 	}
 
 	// private getDismissReason(reason: any): string {

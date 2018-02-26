@@ -17,7 +17,7 @@ export class DataService {
 
 	getChild() {
 		firebase.database().ref('/return').on('child_added', (snapshot)=>{
-			console.log(snapshot.val())
+			// console.log(snapshot.val())
 		});
 	}
 
