@@ -19,16 +19,11 @@ export class WaitlistComponent implements OnInit {
 	ngOnInit() {
 		//load from db to the families array containing {key: familyKey, data: familyData}, the families array mimic the structure in firebase
 		this.todayChildren = this.dataService.getTodaysChildren();
-		this.todayChildren.on('value', (snapshot)=> {
-			this.families = []; //reset the families array before the complete data reload
-			snapshot.forEach((familySnapshot)=> {
-				var familyKey = familySnapshot.key;
-				// console.log('familyKey', familyKey);
-				var familyData = familySnapshot.val();
-				this.families.push({key: familyKey, data: familyData});
-			});
-			// console.log('children', this.families);
-			
+		this.todayChildren.on('child_added', (familySnapshot)=> {
+			var familyKey = familySnapshot.key;
+			// console.log('familyKey', familyKey);
+			var familyData = familySnapshot.val();
+			this.families.push({key: familyKey, data: familyData});
 		});
 	}
 
@@ -39,7 +34,6 @@ export class WaitlistComponent implements OnInit {
 		this.dataService.toggleChildStatus(f.data, j)
 			.then(()=>{
 				this.todayChildren.once('value', (snapshot)=>{
-					// console.log('snapshot',snapshot.val());
 					snapshot.forEach((familySnapshot)=> {
 						if (familySnapshot.key===f.key){
 							//compare the status boolean with the db status, if matching, verify status update successful; if not matching, show not successful
@@ -49,7 +43,7 @@ export class WaitlistComponent implements OnInit {
 							}
 							else {
 								this.families[i].data.children[j].sync = false; //set the sync flag to false otherwise, 
-								console.log('not sync');
+								// console.log('not sync');
 							}
 						}
 						
