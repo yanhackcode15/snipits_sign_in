@@ -16,42 +16,42 @@ export class DataService {
 	// }
 
 	getChild() {
-		firebase.database().ref('/return').on('child_added', (snapshot)=>{
+		firebase.database().ref('/families').on('child_added', (snapshot)=>{
 			// console.log(snapshot.val())
 		});
 	}
 
 	signInFamily(familyObj) {
-		return firebase.database().ref('/return').push(familyObj);
+		return firebase.database().ref('/families').push(familyObj);
 		// this.getChild();
 	}
 
 	getTodaysChildren () {
 		this.today = this.dateStamperService.getDate().dateNumber; //20180117 as a number
 		console.log(this.today);
-		return firebase.database().ref('/return').orderByChild('dateTime/dateNumber').startAt(this.today);
+		return firebase.database().ref('/families').orderByChild('dateTime/dateNumber').startAt(this.today);
 	}
 
 	toggleChildStatus(family, cindex) {
-		return firebase.database().ref('/return').orderByChild('dateTime/dateNumber').equalTo(family.dateTime.dateNumber).once('value')
-			.then ((snapshot)=> {
+		return firebase.database().ref('/families').orderByChild('dateTime/dateNumber').equalTo(family.dateTime.dateNumber).once('value')
+			.then ( (snapshot)=> {
+				console.log('snapshot', snapshot);
 			snapshot.forEach((familySnapshot)=> {
+				console.log('familySnapshot', familySnapshot);
 				var familyKey = familySnapshot.key;
 				var familyData = familySnapshot.val();
 
-				if (familyData.lastname===family.lastname) {
+				if (familyData.dateTime.string===family.dateTime.string && familyData.lastname===family.lastname) {
 					console.log('status',familyData.children[cindex].status)
 
 					let status = familyData.children[cindex].status;
 					let update = {};
 					update['children/' + cindex + '/status/'] = status ? 0 : 1;
-					return firebase.database().ref('/return/' + familyKey).update(update);
+					return firebase.database().ref('/families/' + familyKey).update(update);
 
 				}
 			});
 		});
-				
-
 	}
 
 

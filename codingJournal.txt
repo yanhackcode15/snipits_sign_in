@@ -221,10 +221,14 @@ todos
 
 2/26 Monday
 * changed undo button color to gray - check
-
+* waitlist page must update with new checkins
 * fixed the sync error on waitlist page
 
-* waitlist page must update in real time
+
+* add the functionality to select children to check in on new customer page
+* add a notes field to allow stylist to make notes
+* add a button to cancel a sign in with a pop to remind lost customer should still be checked in but cancel is only used if a customer signed in on a wrong number...etc.
+* allow stylist to view and edit new customer information (edit will be useful when customer made mistakes while filling out)
 * write a script to download customer information and save it to firebase
 * write a script to download from firebase to excel and to inject into portal
 
