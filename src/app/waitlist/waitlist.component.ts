@@ -19,7 +19,8 @@ export class WaitlistComponent implements OnInit {
 	ngOnInit() {
 		//load from db to the families array containing {key: familyKey, data: familyData}, the families array mimic the structure in firebase
 		this.todayChildren = this.dataService.getTodaysChildren();
-		this.todayChildren.once('value', (snapshot)=> {
+		this.todayChildren.on('value', (snapshot)=> {
+			this.families = []; //reset the families array before the complete data reload
 			snapshot.forEach((familySnapshot)=> {
 				var familyKey = familySnapshot.key;
 				// console.log('familyKey', familyKey);

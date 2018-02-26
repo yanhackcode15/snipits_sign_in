@@ -222,9 +222,10 @@ todos
 2/26 Monday
 * changed undo button color to gray - check
 
+* refactor the data service to store today's families into an object/array and component will use it
 * fixed the sync error on waitlist page
-
 * waitlist page must update in real time
+
 * write a script to download customer information and save it to firebase
 * write a script to download from firebase to excel and to inject into portal
 
