@@ -124,8 +124,8 @@ export class CreateNewComponent implements OnInit {
 			for (let i = this.children.controls.length || 0; i < this.childCount.value; ++i) {
 				this.children.push(new FormGroup({
 					childName: new FormControl('', Validators.required),
+					childCheckIn: new FormControl('', Validators.required),
 					childGender: new FormControl('',),
-					// childBirthday: new FormControl('',),
 					childBirthdate: new FormControl('', this.allOrNothing.bind(this)),
 				}));
 			}
@@ -153,8 +153,8 @@ export class CreateNewComponent implements OnInit {
 
 	    this.children = new FormArray([new FormGroup({
 	    	childName: new FormControl('', Validators.required),
+	    	childCheckIn: new FormControl('', Validators.required),
 	    	childGender: new FormControl('',),
-	    	// childBirthday: new FormControl('',),
 	    	childBirthdate: new FormControl('', this.allOrNothing.bind(this))
 	    })]);
 	    this.email = new FormControl('', [
@@ -205,6 +205,7 @@ export class CreateNewComponent implements OnInit {
 			this.children.controls.forEach((childGroup)=>{
 				children.push({
 					childName: childGroup.get('childName').value,
+					childCheckIn: childGroup.get('childCheckIn').value,
 					childGender: childGroup.get('childGender').value,
 					childBirthdate: childGroup.get('childBirthdate').value,
 					status: 0,
@@ -292,6 +293,7 @@ export class CreateNewComponent implements OnInit {
 		this.family.leadSource = '';
 		this.family.children= [{
 			childName: '',
+			childCheckIn: '',
 			childGender: '',
 			childBirthdate: '//',
 		}];
