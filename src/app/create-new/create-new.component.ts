@@ -108,6 +108,7 @@ export class CreateNewComponent implements OnInit {
 				zip: '',
 				children: [],
 				leadSource: {},
+				newCustomer: 'Y',
 		};
 
 		this.mailingAddr = {};
@@ -124,7 +125,7 @@ export class CreateNewComponent implements OnInit {
 			for (let i = this.children.controls.length || 0; i < this.childCount.value; ++i) {
 				this.children.push(new FormGroup({
 					childName: new FormControl('', Validators.required),
-					childCheckIn: new FormControl(true, Validators.required),
+					childCheckIn: new FormControl('', Validators.required),
 					childGender: new FormControl('',),
 					childBirthdate: new FormControl('', this.allOrNothing.bind(this)),
 				}));
@@ -153,7 +154,7 @@ export class CreateNewComponent implements OnInit {
 
 	    this.children = new FormArray([new FormGroup({
 	    	childName: new FormControl('', Validators.required),
-	    	childCheckIn: new FormControl(true, Validators.required),
+	    	childCheckIn: new FormControl('', Validators.required),
 	    	childGender: new FormControl('',),
 	    	childBirthdate: new FormControl('', this.allOrNothing.bind(this))
 	    })]);
@@ -293,11 +294,12 @@ export class CreateNewComponent implements OnInit {
 		this.family.leadSource = '';
 		this.family.children= [{
 			childName: '',
-			childCheckIn: true,
+			childCheckIn: 'true',
 			childGender: '',
 			childBirthdate: '//',
 		}];
 		this.family.dateTime = {}; 
+		this.family.newCustomer = 'Y';
 	}
 
 	allOrNothing (control: AbstractControl): {[key: string]: any} {

@@ -109,6 +109,7 @@ export class SignInComponent implements OnInit {
 				code: this.code.value,
 				lastname: this.lastname.value,
 				children: children,
+				newCustomer: 'N',
 			};
 
 			this.family.dateTime = this.dateStamperService.getDate();

@@ -202,11 +202,11 @@
 								>
 									<div class="btn-group" ngbRadioGroup name="radioBasic">
 								    	<label class="btn btn-lg btn-outline-primary" ngbButtonLabel>
-								    		<input type="radio" [attr.id]="'child' + i + '_childCheckIn'" class="form-control" value="true" ngbButton formControlName="childCheckIn">
+								    		<input type="radio" [attr.id]="'child' + i + '_childCheckIn'" class="form-control" value="true" ngbButton formControlName="childCheckIn" required>
 								    		<span class="button-text">Yes</span>
 								    	</label>
 										<label class="btn btn-lg btn-outline-primary" ngbButtonLabel>
-								    		<input type="radio" [attr.id]="'child' + i + '_childCheckIn'" class="form-control" value="false" ngbButton formControlName="childCheckIn">
+								    		<input type="radio" [attr.id]="'child' + i + '_childCheckIn'" class="form-control" value="false" ngbButton formControlName="childCheckIn" required>
 								    		<span class="button-text">No</span>
 								    	</label>
 								    </div>

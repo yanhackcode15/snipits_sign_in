@@ -225,11 +225,12 @@ todos
 * fixed the sync error on waitlist page
 * add the functionality to select children to check in on new customer page
 * waitlist page filter for children with checkin flag to show - angular 2 ngFor with pipe and custom filter definition - ng g pipe filter ??? weird that radio button can't send boolean to firebase
+* add a new customer Y/N field on waitlist, 
 
-
+* test the timer canceling to make sure it's canceled
 * add a notes field to allow stylist to make notes
-* add a button to cancel a sign in with a pop to remind lost customer should still be checked in but cancel is only used if a customer signed in on a wrong number...etc.
 * allow stylist to view and edit new customer information (edit will be useful when customer made mistakes while filling out)
+
 * write a script to download customer information and save it to firebase
 * write a script to download from firebase to excel and to inject into portal
 

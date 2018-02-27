@@ -60,13 +60,13 @@ export class IdleCheckModalComponent implements OnInit {
 		this.modalReference.result.then((result) => {
 			// this.closeResult = `Closed with: ${result}`;
 			//this call back is called when a modal is closed
-			clearTimeout(this.toHomeTimerId);
+			this.toHomeTimerArry.forEach((timerID)=>clearTimeout(timerID));
 			
 		}, (reason) => {
 			//this callback is called when the modal is dismissed
 			// this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
 			this.cancelIdle(null);
-			clearTimeout(this.toHomeTimerId);
+			this.toHomeTimerArry.forEach((timerID)=>clearTimeout(timerID));
 		});
 	}
 
