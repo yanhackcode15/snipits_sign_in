@@ -224,8 +224,9 @@ todos
 * waitlist page must update with new checkins
 * fixed the sync error on waitlist page
 * add the functionality to select children to check in on new customer page
+* waitlist page filter for children with checkin flag to show - angular 2 ngFor with pipe and custom filter definition - ng g pipe filter ??? weird that radio button can't send boolean to firebase
 
-* waitlist page filter for children with checkin flag to show - angular 2 ngFor with pipe and custom filter definition - ng g pipe filter
+
 * add a notes field to allow stylist to make notes
 * add a button to cancel a sign in with a pop to remind lost customer should still be checked in but cancel is only used if a customer signed in on a wrong number...etc.
 * allow stylist to view and edit new customer information (edit will be useful when customer made mistakes while filling out)
