@@ -36,6 +36,7 @@ import { AddressAutoCompleteComponent } from './address-auto-complete/address-au
 import { BirthdayDatePickerComponent } from './birthday-date-picker/birthday-date-picker.component';
 import { WaitlistComponent } from './waitlist/waitlist.component';
 import { IdleCheckModalComponent } from './idle-check-modal/idle-check-modal.component';
+import { ChildCheckInFilterPipe } from './child-check-in-filter.pipe';
 
 
 
@@ -53,6 +54,7 @@ import { IdleCheckModalComponent } from './idle-check-modal/idle-check-modal.com
     BirthdayDatePickerComponent,
     WaitlistComponent,
     IdleCheckModalComponent,
+    ChildCheckInFilterPipe,
   ],
   imports: [
     AgmCoreModule.forRoot({

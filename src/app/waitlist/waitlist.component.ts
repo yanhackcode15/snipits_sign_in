@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {DataService} from '../data.service';
+// import {ChildCheckInFilterPipe} from '../child-check-in-filter.pipe';
 
 @Component({
 	selector: 'app-waitlist',

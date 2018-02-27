@@ -22,7 +22,7 @@
 			<td>{{family.data.lastname}}</td>
 			<td>{{family.data.dateTime.string}}</td>
 			<td>
-				<tr *ngFor="let child of family.data.children; let j = index;">
+				<tr *ngFor="let child of family.data.children | childCheckInFilter; let j = index;">
 					<td>{{child.childName}}</td>
 					<td *ngIf="!child.status"><button class='btn btn-primary' (click)="checkInChild($event, family, i, child, j)">Check In</button></td>
 					<td *ngIf="child.status"><div>Checked In </div></td>
