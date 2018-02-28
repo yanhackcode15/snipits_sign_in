@@ -3,33 +3,58 @@
 	  Today's Waitlist
 	</h1>
 </div>
-<table class="table table-striped">
-	<thead>
-		<tr>
-			<th scope="col">#</th>
-			<th scope="col">New Cust.</th>
-			<th scope="col">Family Code</th>
-			<th scope="col">Last Name</th>
-			<th scope="col">Check-in Time Stamp</th>
-			<th scope="col">Child's First Name & Status</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr *ngFor="let family of families; let i = index;">
-			<td scope="row">{{ i+1 }}</td>
-			<td>{{family.data.newCustomer}}</td>
-			<td>{{family.data.code || 'N/A'}}</td>
-			<td>{{family.data.lastname}}</td>
-			<td>{{family.data.dateTime.string}}</td>
-			<td>
-				<tr *ngFor="let child of family.data.children | childCheckInFilter; let j = index;">
-					<td>{{child.childName}}</td>
-					<td *ngIf="!child.status"><button class='btn btn-primary' (click)="checkInChild($event, family, i, child, j)">Check In</button></td>
-					<td *ngIf="child.status"><div>Checked In </div></td>
-					<td *ngIf="child.status"><button class='btn btn-secondary' (click)="checkInChild($event, family, i, child, j)"> Undo </button></td>
-					<td *ngIf="!child.sync && child.sync!=null"><div>Sync Error</div></td>
-				</tr>
-			</td>
-		</tr>
-	</tbody>
-</table>
+<form 
+	novalidate 
+	[formGroup]="waitlistNotesForm" 
+	(ngSubmit)="submitNotes()"
+	autocomplete="nofill"
+>
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th scope="col">#</th>
+				<th scope="col">New Cust.</th>
+				<th scope="col">Family Code</th>
+				<th scope="col">Last Name</th>
+				<th scope="col">Check-in Time Stamp</th>
+				<th scope="col">Child's First Name & Status</th>
+				<th scope="col">Notes</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr
+				class="form-group"
+				formArrayName="familyControlArry" 
+				*ngFor="let family of families; let i = index;"
+			>
+				<td scope="row">{{ i+1 }}</td>
+				<td>{{family.data.newCustomer}}</td>
+				<td>{{family.data.code || 'N/A'}}</td>
+				<td>{{family.data.lastname}}</td>
+				<td>{{family.data.dateTime.string}}</td>
+				<td>
+					<tr *ngFor="let child of family.data.children | childCheckInFilter; let j = index;">
+						<td>{{child.childName}}</td>
+						<td *ngIf="!child.status"><button class='btn btn-primary' (click)="checkInChild($event, family, i, child, j)">Check In</button></td>
+						<td *ngIf="child.status"><div>Checked In </div></td>
+						<td *ngIf="child.status"><button class='btn btn-secondary' (click)="checkInChild($event, family, i, child, j)"> Undo </button></td>
+						<td *ngIf="!child.sync && child.sync!=null"><div>Sync Error</div></td>
+					</tr>
+				</td>
+				<td class="form-group" [formGroup]=familyControlArry.controls[i] >
+					<!-- must attach the formcontrol to the formgroup usign the [formGroup] notation -->
+					<textarea 
+						id="'notes_'+i" 
+						class="form-control form-control-lg" 
+						formControlName="familyNotes"
+					>
+					</textarea>
+					<div>
+						<button type="button" class="btn btn-outline-primary" (click)="submitNotes(family.key, i)">Save</button>
+						<!-- button by default is of type="submit", needs to be set to 'button' in order not to trigger the ngSubmit -->
+					</div>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</form>

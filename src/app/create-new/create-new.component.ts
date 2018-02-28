@@ -35,7 +35,6 @@ declare var window: any;
 		DateStamperService,
 		UtilityService,
 	],
- 	// directives: [AddressAutoCompleteComponent],
 })
 export class CreateNewComponent implements OnInit {
 
@@ -109,6 +108,7 @@ export class CreateNewComponent implements OnInit {
 				children: [],
 				leadSource: {},
 				newCustomer: 'Y',
+				notes: '',
 		};
 
 		this.mailingAddr = {};

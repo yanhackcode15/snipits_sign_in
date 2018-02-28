@@ -35,13 +35,14 @@ export class IdleCheckModalComponent implements OnInit {
 	modalTimerArry: any=[];
 	toHomeTimerId: any;
 	toHomeTimerArry: any=[];
-	modalTimer: any=50000;
+	modalTimer: any=5000;
 	toHomeTimer: any=10000;
 	constructor( private modalService: NgbModal, private router: Router, ) { }
 
 	ngAfterViewInit() {
     	this.modalTimerId = setTimeout(() => {
 	        this.open(this.content);
+	        console.log('time is up')
 	    }, this.modalTimer);  //5s
 	    this.modalTimerArry.push(this.modalTimerId);
   	}
@@ -50,10 +51,11 @@ export class IdleCheckModalComponent implements OnInit {
 	}
 
 	open(content) {
-		console.log('I was opened')
 		this.modalReference = this.modalService.open(content);
+		console.log('to home timer starting');
 		this.toHomeTimerId = setTimeout(() => {
 	        this.routeToHome(null);
+	        console.log('time is up')
 	    }, this.toHomeTimer); 
 
 	    this.toHomeTimerArry.push(this.toHomeTimerId);
@@ -76,14 +78,18 @@ export class IdleCheckModalComponent implements OnInit {
 
 	}
 	cancelIdle($e) {
+		console.log('modalTimer cleared');
 		clearTimeout(this.modalTimerId);
+		console.log('modal timer starting');
 		this.modalTimerId = setTimeout(() => {
 	        this.open(this.content);
+	        console.log('time is up')
 	    }, this.modalTimer);  
 	    this.modalTimerArry.push(this.modalTimerId);
 	}
 
 	routeToHome($e) {
+		console.log("modal timer cleared")
 		clearTimeout(this.modalTimerId);
 		this.modalReference.close();
 		this.router.navigate(['']);
@@ -93,6 +99,7 @@ export class IdleCheckModalComponent implements OnInit {
 	clearModalTimers(timerIdArry) {
 		timerIdArry.forEach((timerId)=>clearTimeout(timerId));
 	}
+
 
 	// private getDismissReason(reason: any): string {
 	// 	if (reason === ModalDismissReasons.ESC) {

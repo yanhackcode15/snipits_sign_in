@@ -54,7 +54,10 @@ export class DataService {
 		});
 	}
 
-
-
+	updateFamilyNotes(key, content) {
+		let newNotes = {};
+		newNotes[key+'/notes'] = content;
+		return firebase.database().ref('/families').update(newNotes);
+	}
 
 }

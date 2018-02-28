@@ -1,6 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import {DataService} from '../data.service';
-// import {ChildCheckInFilterPipe} from '../child-check-in-filter.pipe';
+import {ReactiveFormsModule, 
+		FormsModule, 
+		FormBuilder, 
+		FormControl, 
+		FormArray,
+		FormGroup, 
+		Validators, 
+} from "@angular/forms";
 
 @Component({
 	selector: 'app-waitlist',
@@ -14,17 +21,62 @@ export class WaitlistComponent implements OnInit {
 	status: boolean; 
 	families: any[]=[];
 	todayChildren: any; //a db reference/object, can call it with .once method
+	waitlistNotesForm: FormGroup;
+	// familyNotes: FormControl;
+	familyControlArry: FormArray;
+	initialDataLoad: boolean = false; 
 
 	constructor(private dataService: DataService) { }
 
 	ngOnInit() {
+		//create form controls and create the form
+		this.createFormControls();
+		this.createForm();
 		//load from db to the families array containing {key: familyKey, data: familyData}, the families array mimic the structure in firebase
 		this.todayChildren = this.dataService.getTodaysChildren();
 		this.todayChildren.on('child_added', (familySnapshot)=> {
-			var familyKey = familySnapshot.key;
-			// console.log('familyKey', familyKey);
-			var familyData = familySnapshot.val();
-			this.families.push({key: familyKey, data: familyData});
+			if (this.initialDataLoad) {
+				var familyKey = familySnapshot.key;
+				var familyData = familySnapshot.val();
+				this.families.push({key: familyKey, data: familyData});
+				this.familyControlArry.push(new FormGroup({
+					familyNotes: new FormControl('',),
+				}));
+				let l = this.familyControlArry.controls.length;
+				this.familyControlArry.at(l-1).get('familyNotes').valueChanges.subscribe((note)=>{
+					this.families[l-1].data.note = note;
+					console.log('each form control content', note);
+					console.log('each form control index', l-1);
+				});
+
+			}
+		});
+		
+		this.todayChildren.once('value', (snapshot)=>{ 
+			snapshot.forEach((eachShot)=>{
+				var familyKey = eachShot.key;
+				var familyData = eachShot.val();
+				this.families.push({key: familyKey, data: familyData});
+				this.familyControlArry.push(new FormGroup({
+					familyNotes: new FormControl('',),
+				}));
+				let l = this.familyControlArry.controls.length;
+				this.familyControlArry.at(l-1).get('familyNotes').valueChanges.subscribe((note)=>{
+					this.families[l-1].data.note = note;
+					console.log('each form control content', note);
+					console.log('each form control index', l-1);
+				});
+			});
+
+			// this.familyControlArry.controls.forEach((formgroup, index)=>{
+			// 	formgroup.get('familyNotes').valueChanges.subscribe((note)=>{
+			// 		this.families[index].data.note = note;
+			// 		console.log('each form control content', note);
+			// 		console.log('each form control index', index);
+			// 	});
+			// });
+
+			this.initialDataLoad = true;
 		});
 	}
 
@@ -53,6 +105,26 @@ export class WaitlistComponent implements OnInit {
 			});
 
 	}
+
+	//implement a mechanism to save the note field content to a local model and upon 'save' click to save to firebase
+
+	createFormControls() {
+		this.familyControlArry = new FormArray([]);
+	}
+
+	createForm() {
+		this.waitlistNotesForm = new FormGroup({
+	        familyControlArry: this.familyControlArry,
+	    });
+
+	}
+
+	submitNotes(key, index) {
+		let content = this.families[index].data.note;
+		this.dataService.updateFamilyNotes(key, content);
+	}
+
+
 
 	// convert from real time submit to optimistic 
 	// when clicked, view immediately refelect user's intention; component will insert the db update into a promise array to execute; 
