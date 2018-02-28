@@ -226,11 +226,11 @@ todos
 * add the functionality to select children to check in on new customer page
 * waitlist page filter for children with checkin flag to show - angular 2 ngFor with pipe and custom filter definition - ng g pipe filter ??? weird that radio button can't send boolean to firebase
 * add a new customer Y/N field on waitlist, 
-
 * add a notes field in the view, save to the model, add a save button to submit to firebase
+
+
 * refactor the timer calls 
 * test the timer canceling to make sure it's canceled
-
 * allow stylist to view and edit new customer information (edit will be useful when customer made mistakes while filling out)
 
 * newCustomer form fields not rendering error
