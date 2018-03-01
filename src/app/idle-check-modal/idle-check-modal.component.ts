@@ -42,12 +42,13 @@ export class IdleCheckModalComponent implements OnInit {
 	ngAfterViewInit() {
     	this.modalTimerId = setTimeout(() => {
 	        this.open(this.content);
-	        console.log('time is up')
+	        console.log('time is up aaaa')
 	    }, this.modalTimer);  //5s
 	    this.modalTimerArry.push(this.modalTimerId);
   	}
 
 	ngOnInit() {
+		this.modalService.open(this.content).close();
 	}
 
 	open(content) {
@@ -55,7 +56,7 @@ export class IdleCheckModalComponent implements OnInit {
 		console.log('to home timer starting');
 		this.toHomeTimerId = setTimeout(() => {
 	        this.routeToHome(null);
-	        console.log('time is up')
+	        console.log('time is up bbb')
 	    }, this.toHomeTimer); 
 
 	    this.toHomeTimerArry.push(this.toHomeTimerId);
@@ -83,7 +84,7 @@ export class IdleCheckModalComponent implements OnInit {
 		console.log('modal timer starting');
 		this.modalTimerId = setTimeout(() => {
 	        this.open(this.content);
-	        console.log('time is up')
+	        console.log('time is up cccc')
 	    }, this.modalTimer);  
 	    this.modalTimerArry.push(this.modalTimerId);
 	}
@@ -97,6 +98,7 @@ export class IdleCheckModalComponent implements OnInit {
 	}
 
 	clearModalTimers(timerIdArry) {
+		console.log('clear all modal timers');
 		timerIdArry.forEach((timerId)=>clearTimeout(timerId));
 	}
 

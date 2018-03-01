@@ -190,8 +190,8 @@
 							</div>
 							<div
 								[ngClass]="{
-										'text-danger': child.get('childCheckIn').invalid && (child.get('childCheckIn').touched || child.get('childCheckIn').dirty),
-										'text-success': child.get('childCheckIn').valid && (child.get('childCheckIn').touched || child.get('childCheckIn').dirty)
+										'text-danger': child.get('childCheckIn').invalid && error,
+										'text-success': child.get('childCheckIn').valid
 								}"
 							>
 								<div>
@@ -213,10 +213,10 @@
 								</div>
 								<div 
 									class="form-control-feedback" 
-									*ngIf="child.get('childCheckIn').errors && (child.get('childCheckIn').touched || child.get('childCheckIn').dirty)"
+									*ngIf="child.get('childCheckIn').errors && error"
 								>
 									<p 
-										*ngIf="child.get('childCheckIn').errors.required && (child.get('childCheckIn').touched || child.get('childCheckIn').dirty)"
+										*ngIf="child.get('childCheckIn').errors.required && error"
 									>
 										Please let us know if this child is receiving service today.
 									</p>

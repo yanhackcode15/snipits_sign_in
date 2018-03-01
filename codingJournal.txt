@@ -228,14 +228,18 @@ todos
 * add a new customer Y/N field on waitlist, 
 * add a notes field in the view, save to the model, add a save button to submit to firebase
 
+2/27 Tuesday
+* fixed notes field, hooked it up with firebase and sync'd with the component model
+
+2/28 Wednesday
+* fixed the error not rendering for 'receiving service today' radio button
+* fixed the error: 'ExpressionChangedAfterItHasBeenCheckedError: Expression has changed after it was checked. Previous value: 'focus: true'. Current value: 'focus: false'.'
+
+* write a script to download customer information and save it to firebase
+* write a script to download from firebase to excel and to inject into portal
 
 * refactor the timer calls 
 * test the timer canceling to make sure it's canceled
-* allow stylist to view and edit new customer information (edit will be useful when customer made mistakes while filling out)
-
-* newCustomer form fields not rendering error
-* write a script to download customer information and save it to firebase
-* write a script to download from firebase to excel and to inject into portal
 
 
 Parking Lot: 

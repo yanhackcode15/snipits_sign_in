@@ -5,6 +5,7 @@ import {Component,
 		NgZone, 
 		ViewChild,
 		Inject,
+		ChangeDetectorRef,
 } from '@angular/core';
 import {DataService} from '../data.service';
 import { DateStamperService } from '../date-stamper.service';
@@ -82,7 +83,7 @@ export class CreateNewComponent implements OnInit {
 	error: boolean; 
 	dateTime: object;
 
-	constructor(private dataService: DataService, private router:Router, private dateStamperService: DateStamperService, private utilityService: UtilityService) {
+	constructor(private dataService: DataService, private router:Router, private dateStamperService: DateStamperService, private utilityService: UtilityService, private cd: ChangeDetectorRef) {
 		this.leadMap = {
 			'Not sure': '0000',
             'Yelp': '1185',
@@ -147,6 +148,10 @@ export class CreateNewComponent implements OnInit {
 		this.createForm();
 		this.initializeSubmitFields ();
 	}
+
+	ngAfterViewInit() {
+        this.cd.detectChanges();
+    }
 
 	createFormControls() {
 	    this.lastname = new FormControl('', Validators.required);
@@ -330,23 +335,4 @@ export class CreateNewComponent implements OnInit {
 	onKeydown(e) {
 		this.utilityService.onKeydown(e);		
 	}
-
-	
-
-
-
-	// onNotify(addr:object):void {
- //    	// alert(addr);
- //    	this.mailingAddr = addr;
- //    	console.log('notified add', this.mailingAddr); 
-
- // 	}
-
-	// onNotify(flag:boolean):void {
- //    	this.isVerifiedAddress = flag;
- //    	console.log('this.isVerifiedAddress', this.isVerifiedAddress);
- // 	}
-
- //remaining: this.address formcontrol isn't surfacing from the child component. it's declared in both sub and parent comp. not sure if that's necessary. imagine the child comp should be able to 
-
 }
