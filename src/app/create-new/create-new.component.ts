@@ -6,6 +6,7 @@ import {Component,
 		ViewChild,
 		Inject,
 		ChangeDetectorRef,
+		AfterViewChecked,
 } from '@angular/core';
 import {DataService} from '../data.service';
 import { DateStamperService } from '../date-stamper.service';
@@ -149,10 +150,6 @@ export class CreateNewComponent implements OnInit {
 		this.initializeSubmitFields ();
 	}
 
-	ngAfterViewInit() {
-        this.cd.detectChanges();
-    }
-
 	createFormControls() {
 	    this.lastname = new FormControl('', Validators.required);
 	    this.childCount = new FormControl('1', Validators.required);
@@ -191,7 +188,7 @@ export class CreateNewComponent implements OnInit {
 	}
 
 	signIn() {
-		console.log('children valid', this.children.valid);
+		// console.log('children valid', this.children.valid);
 		this.lastname.markAsTouched();
 		this.phone.markAsTouched(); 
 		this.children.controls.forEach((childGroup)=>{
@@ -205,9 +202,7 @@ export class CreateNewComponent implements OnInit {
 		let fcode: any = this.phone.value.slice(length-4, length);
 
 		if (this.myform2.valid) {
-			// clearTimeout(this.modal.modalTimerId);
-			this.modal.modalTimerArry.forEach((timerID)=>{clearTimeout(timerID)});
-			this.modal.toHomeTimerArry.forEach((timerID)=>{clearTimeout(timerID)});
+			this.modal.clearAll();
 			this.children.controls.forEach((childGroup)=>{
 				children.push({
 					childName: childGroup.get('childName').value,

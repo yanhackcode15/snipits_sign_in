@@ -1,7 +1,19 @@
-import { Component, OnInit, ViewChild, TemplateRef, AfterViewInit } from '@angular/core';
+import { 
+	Component, 
+	OnInit, 
+	ViewChild, 
+	TemplateRef, 
+	AfterViewInit, 
+	ChangeDetectorRef, 
+	EventEmitter, 
+	Output
+} from '@angular/core';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
-import {Router} from '@angular/router';
+import {Router, NavigationEnd } from '@angular/router';
 
+import 'rxjs/add/operator/filter';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/mergeMap';
 
 @Component({
 	selector: 'app-idle-check-modal',
@@ -17,7 +29,7 @@ import {Router} from '@angular/router';
 		    	<p>It looks like you haven't been active&hellip;Do you need more time? </p>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-lg btn-outline-primary" (click)="routeToHome($event)">Back to Home</button>
+				<button type="button" class="btn btn-lg btn-outline-primary" (click)="routeToHome()">Back to Home</button>
 		    	<button type="button" class="btn btn-lg btn-primary" (click)="closeModal()">More Time</button>
 			</div>
 
@@ -31,87 +43,67 @@ export class IdleCheckModalComponent implements OnInit {
 	@ViewChild('content') content: TemplateRef<any>;
 	closeResult: string;
 	modalReference: any;
-	modalTimerId: any;
-	modalTimerArry: any=[];
-	toHomeTimerId: any;
-	toHomeTimerArry: any=[];
+	timerId: any;
 	modalTimer: any=5000;
 	toHomeTimer: any=10000;
-	constructor( private modalService: NgbModal, private router: Router, ) { }
+
+	@Output() openFlag = new EventEmitter<boolean>();
+
+	constructor( private modalService: NgbModal, private router: Router, private cd: ChangeDetectorRef ) { }
 
 	ngAfterViewInit() {
-    	this.modalTimerId = setTimeout(() => {
-	        this.open(this.content);
-	        console.log('time is up aaaa')
-	    }, this.modalTimer);  //5s
-	    this.modalTimerArry.push(this.modalTimerId);
+    	this.resetIdle();
   	}
 
 	ngOnInit() {
-		this.modalService.open(this.content).close();
+	  	this.router.events
+	  		.filter((event) => event instanceof NavigationEnd)
+	  		.subscribe((event) => {
+    			this.clearAll();
+	  		});
 	}
 
 	open(content) {
+		if (document.activeElement instanceof HTMLElement) {
+			const eleRef = document.activeElement as HTMLElement;
+			eleRef.blur();
+		}
 		this.modalReference = this.modalService.open(content);
-		console.log('to home timer starting');
-		this.toHomeTimerId = setTimeout(() => {
-	        this.routeToHome(null);
-	        console.log('time is up bbb')
-	    }, this.toHomeTimer); 
+		this.resetRouteToHome() 
 
-	    this.toHomeTimerArry.push(this.toHomeTimerId);
-		this.modalReference.result.then((result) => {
-			// this.closeResult = `Closed with: ${result}`;
-			//this call back is called when a modal is closed
-			this.toHomeTimerArry.forEach((timerID)=>clearTimeout(timerID));
-			
-		}, (reason) => {
-			//this callback is called when the modal is dismissed
-			// this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-			this.cancelIdle(null);
-			this.toHomeTimerArry.forEach((timerID)=>clearTimeout(timerID));
-		});
+		this.modalReference.result.then(() => this.resetIdle(), () => this.resetIdle());
 	}
 
 	closeModal(){
 		this.modalReference.close();
-		this.cancelIdle(null);
-
 	}
-	cancelIdle($e) {
-		console.log('modalTimer cleared');
-		clearTimeout(this.modalTimerId);
-		console.log('modal timer starting');
-		this.modalTimerId = setTimeout(() => {
+
+	resetIdle() {
+		clearTimeout(this.timerId);
+		this.timerId = setTimeout(() => {
 	        this.open(this.content);
-	        console.log('time is up cccc')
 	    }, this.modalTimer);  
-	    this.modalTimerArry.push(this.modalTimerId);
 	}
 
-	routeToHome($e) {
-		console.log("modal timer cleared")
-		clearTimeout(this.modalTimerId);
-		this.modalReference.close();
+	resetRouteToHome() {
+		clearTimeout(this.timerId);
+		this.timerId = setTimeout(() => {
+	        this.routeToHome();
+	    }, this.toHomeTimer);  
+	}
+
+	routeToHome() {
 		this.router.navigate(['']);
-
 	}
 
-	clearModalTimers(timerIdArry) {
-		console.log('clear all modal timers');
-		timerIdArry.forEach((timerId)=>clearTimeout(timerId));
+	clearAll() {
+		clearTimeout(this.timerId);
+		if (this.modalReference) {
+			this.modalReference.close();
+			// Modal close is async and triggers `resetIdle()`
+			// so we need to clear the timer after it sets it
+			setTimeout(() => clearTimeout(this.timerId));
+		}
+		
 	}
-
-
-	// private getDismissReason(reason: any): string {
-	// 	if (reason === ModalDismissReasons.ESC) {
-	// 		return 'by pressing ESC';
-	// 	} else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-	// 		return 'by clicking on a backdrop';
-	// 	} else {
-	// 		return  `with: ${reason}`;
-	// 	}
-	// }
-
-
 }

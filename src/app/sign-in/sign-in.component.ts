@@ -96,8 +96,7 @@ export class SignInComponent implements OnInit {
 		let paramsObj: any = {};
 
 		if (this.myform.valid) {
-			this.modal.modalTimerArry.forEach((timerID)=>{clearTimeout(timerID)});
-			this.modal.toHomeTimerArry.forEach((timerID)=>{clearTimeout(timerID)});
+			this.modal.clearAll();
 			this.children.controls.forEach((childGroup)=>{
 				children.push({
 					childName: childGroup.get('childName').value,
