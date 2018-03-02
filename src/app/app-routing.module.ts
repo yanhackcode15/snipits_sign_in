@@ -37,7 +37,11 @@ const routes: Routes = [
 	{
 		path: 'photo-gallery',
 		component: PhotoGalleryComponent,
-	}
+	},
+	{
+		path: '**', 
+		component: LandingPageComponent,
+	},
 ];
 
 @NgModule({
