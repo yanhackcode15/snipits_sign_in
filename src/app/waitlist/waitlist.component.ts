@@ -68,14 +68,6 @@ export class WaitlistComponent implements OnInit {
 				});
 			});
 
-			// this.familyControlArry.controls.forEach((formgroup, index)=>{
-			// 	formgroup.get('familyNotes').valueChanges.subscribe((note)=>{
-			// 		this.families[index].data.note = note;
-			// 		console.log('each form control content', note);
-			// 		console.log('each form control index', index);
-			// 	});
-			// });
-
 			this.initialDataLoad = true;
 		});
 	}
