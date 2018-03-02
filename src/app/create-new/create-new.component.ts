@@ -226,13 +226,13 @@ export class CreateNewComponent implements OnInit {
 
 			this.family.children = children;
 			this.family.leadSource = {leadCode: leadCode, leadSource: this.leadSource.value};
-			this.family.dateTime = this.dateStamperService.getDate();
+			this.family.dateTime = this.dateStamperService.getToday();
 
 			//construct an object to pass as the confirmation page url params
 			paramsObj.code = fcode; 
 			paramsObj.lastname = this.family.lastname; 
 			paramsObj.children = this.family.children.map(child => child.childName).join(',');
-			paramsObj.timeStamp = this.family.dateTime.string; 
+			paramsObj.timeStamp = this.family.dateTime.dateString; 
 			
 
 			this.dataService.signInFamily(this.family)

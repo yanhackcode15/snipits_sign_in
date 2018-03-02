@@ -112,13 +112,13 @@ export class SignInComponent implements OnInit {
 				notes: '',
 			};
 
-			this.family.dateTime = this.dateStamperService.getDate();
+			this.family.dateTime = this.dateStamperService.getToday();
 			
 			//construct an object to pass as the confirmation page url params
 			paramsObj.code = this.family.code; 
 			paramsObj.lastname = this.family.lastname; 
 			paramsObj.children = this.family.children.map(child => child.childName).join(',');
-			paramsObj.timeStamp = this.family.dateTime.string;
+			paramsObj.timeStamp = this.family.dateTime.dateString;
 
 
 			this.dataService.signInFamily(this.family)

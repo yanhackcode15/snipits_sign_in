@@ -27,7 +27,7 @@ export class DataService {
 	}
 
 	getTodaysChildren () {
-		this.today = this.dateStamperService.getDate().dateNumber; //20180117 as a number
+		this.today = this.dateStamperService.getToday().dateNumber; //20180117 as a number
 		console.log(this.today);
 		return firebase.database().ref('/families').orderByChild('dateTime/dateNumber').startAt(this.today);
 	}
