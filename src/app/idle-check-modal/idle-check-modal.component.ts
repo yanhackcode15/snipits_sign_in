@@ -44,7 +44,7 @@ export class IdleCheckModalComponent implements OnInit {
 	closeResult: string;
 	modalReference: any;
 	timerId: any;
-	modalTimer: any=5000;
+	modalTimer: any=50000;
 	toHomeTimer: any=10000;
 
 	@Output() openFlag = new EventEmitter<boolean>();
