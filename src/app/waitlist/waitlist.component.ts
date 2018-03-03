@@ -22,7 +22,6 @@ export class WaitlistComponent implements OnInit {
 	families: any[]=[];
 	todayChildren: any; //a db reference/object, can call it with .once method
 	waitlistNotesForm: FormGroup;
-	// familyNotes: FormControl;
 	familyControlArry: FormArray;
 	initialDataLoad: boolean = false; 
 
@@ -45,8 +44,8 @@ export class WaitlistComponent implements OnInit {
 				let l = this.familyControlArry.controls.length;
 				this.familyControlArry.at(l-1).get('familyNotes').valueChanges.subscribe((note)=>{
 					this.families[l-1].data.note = note;
-					console.log('each form control content', note);
-					console.log('each form control index', l-1);
+					// console.log('each form control content', note);
+					// console.log('each form control index', l-1);
 				});
 
 			}
@@ -63,8 +62,8 @@ export class WaitlistComponent implements OnInit {
 				let l = this.familyControlArry.controls.length;
 				this.familyControlArry.at(l-1).get('familyNotes').valueChanges.subscribe((note)=>{
 					this.families[l-1].data.note = note;
-					console.log('each form control content', note);
-					console.log('each form control index', l-1);
+					// console.log('each form control content', note);
+					// console.log('each form control index', l-1);
 				});
 			});
 
@@ -88,7 +87,6 @@ export class WaitlistComponent implements OnInit {
 							}
 							else {
 								this.families[i].data.children[j].sync = false; //set the sync flag to false otherwise, 
-								// console.log('not sync');
 							}
 						}
 						

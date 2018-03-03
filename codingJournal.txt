@@ -235,11 +235,18 @@ todos
 * fixed the error not rendering for 'receiving service today' radio button
 * fixed the error: 'ExpressionChangedAfterItHasBeenCheckedError: Expression has changed after it was checked. Previous value: 'focus: true'. Current value: 'focus: false'.'
 
+3/1 Thurs
+* fixed the error with expression changed ..etc
+* Refactored the timer canceling and resetting mechanism
+
+3/2 Friday
+* fixed the issue with dateNum not padding the date digit, causing issue with wiatlist filtering
+* refactored the datestamper service
+* change 'check in' button to start service
+* fixed waitlist page bug - not showing notes upon page refresh
+
 * write a script to download customer information and save it to firebase
 * write a script to download from firebase to excel and to inject into portal
-
-* refactor the timer calls 
-* test the timer canceling to make sure it's canceled
 
 
 Parking Lot: 

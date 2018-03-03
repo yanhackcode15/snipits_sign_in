@@ -30,11 +30,11 @@
 				<td>{{family.data.newCustomer}}</td>
 				<td>{{family.data.code || 'N/A'}}</td>
 				<td>{{family.data.lastname}}</td>
-				<td>{{family.data.dateTime.string}}</td>
+				<td>{{family.data.dateTime.dateString}}</td>
 				<td>
 					<tr *ngFor="let child of family.data.children | childCheckInFilter; let j = index;">
 						<td>{{child.childName}}</td>
-						<td *ngIf="!child.status"><button class='btn btn-primary' (click)="checkInChild($event, family, i, child, j)">Check In</button></td>
+						<td *ngIf="!child.status"><button class='btn btn-primary' (click)="checkInChild($event, family, i, child, j)">Start Service</button></td>
 						<td *ngIf="child.status"><div>Checked In </div></td>
 						<td *ngIf="child.status"><button class='btn btn-secondary' (click)="checkInChild($event, family, i, child, j)"> Undo </button></td>
 						<td *ngIf="!child.sync && child.sync!=null"><div>Sync Error</div></td>
@@ -46,6 +46,7 @@
 						id="'notes_'+i" 
 						class="form-control form-control-lg" 
 						formControlName="familyNotes"
+						[ngModel]=family.data.notes
 					>
 					</textarea>
 					<div>
