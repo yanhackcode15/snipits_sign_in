@@ -12,13 +12,13 @@
 		<table class="table table-striped container">
 			<thead>
 				<tr class="row">
-					<th class="col-md-1" scope="col">#</th>
-					<th class="col-md-1" scope="col">New Cust.</th>
-					<th class="col-md-1" scope="col">Family Code</th>
-					<th class="col-md-2" scope="col">Last Name</th>
-					<th class="col-md-1" scope="col">Check-in Time Stamp</th>
-					<th class="col-md-4" scope="col">Child's First Name & Status</th>
-					<th class="col-md-2" scope="col">Notes</th>
+					<th class="col-1" scope="col">#</th>
+					<th class="col-1" scope="col">New Cust.</th>
+					<th class="col-1" scope="col">Family Code</th>
+					<th class="col-2" scope="col">Last Name</th>
+					<th class="col-1" scope="col">Check-in Time Stamp</th>
+					<th class="col-4" scope="col">Child's First Name & Status</th>
+					<th class="col-2" scope="col">Notes</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -27,12 +27,12 @@
 					formArrayName="familyControlArry" 
 					*ngFor="let family of families; let i = index;"
 				>
-					<td class="col-md-1" scope="row">{{ i+1 }}</td>
-					<td class="col-md-1">{{family.data.newCustomer}}</td>
-					<td class="col-md-1">{{family.data.code || 'N/A'}}</td>
-					<td class="col-md-2">{{family.data.lastname}}</td>
-					<td class="col-md-1">{{family.data.dateTime.dateString}}</td>
-					<td class="col-md-4">
+					<td class="col-1" scope="row">{{ i+1 }}</td>
+					<td class="col-1">{{family.data.newCustomer}}</td>
+					<td class="col-1">{{family.data.code || 'N/A'}}</td>
+					<td class="col-2">{{family.data.lastname}}</td>
+					<td class="col-1">{{family.data.dateTime.dateString}}</td>
+					<td class="col-4">
 						<tr *ngFor="let child of family.data.children | childCheckInFilter; let j = index;">
 							<td>{{child.childName}}</td>
 							<td>{{child.gender || 'N/A'}}</td>
