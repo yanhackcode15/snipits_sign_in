@@ -245,27 +245,31 @@ todos
 * change 'check in' button to start service
 * fixed waitlist page bug - not showing notes upon page refresh
 
+3/3 Sat
+* Break
+
+3/4 Sun
+* break
+
+3/5 Mon
+* store visit
+* set cleear cookies to be all the time in chrome
+
+3/6 Tuesday
+* add gender in existing client sign in
+* show gender in stylist waitlist page
+* create a customer waitlist page
+* lock the chrome tab so customer can't close it or open a new tab
+* write a new script to enter new customer information into firebase
 * write a script to download customer information and save it to firebase
 * write a script to download from firebase to excel and to inject into portal
 
-
 Parking Lot: 
-* change the background image of the landing page 
-* start design the app to be the porfolio site
 * set up google hangout
 * set up tablets
-* add a page to show customers the current customers in waiting 
-
-
-* disable prompts or cached entry values for the form
-* add ability on create new page to select kids to be serviced today vs. for future
-* add a button on conf page to click to landing page and make the redirct happen automatically after 3 minutes
-* add ability to edit profile (a view and confirm page and/or edit after creation)
-
-* look into pulling firebase locally
-* clean up css (!important is a bad practice)
 
 Programming Theory Parking lot: 
+* new app to submit schedule and time off request online (a text service to snipits and reeive a link to submit)
 * Better understand click sequence, the events fired
 * null, undefined, empty in js
 * typescript
