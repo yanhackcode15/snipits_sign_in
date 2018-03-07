@@ -266,14 +266,18 @@ todos
 * call with Yvonne
 * add gender in existing client sign in
 * show gender in stylist waitlist page
-* create a customer waitlist page
+
+* fix the screen width issue
 * lock the chrome tab so customer can't close it or open a new tab
+* create a customer waitlist page
 
 Future
 * create a new page: submit vacation request
+* create a schedule bot
 * create vacation request validation: 1. three weeks auto reject unless exception - emergency; 2. validated against black off days
 * create a black off days calendar
 * cut off day is end of the day - Tuesday (if submission is after Tuesday, will need to find your own swap buddy)
+* automate dashboard data pulling process
 * write a new script to enter new customer information into firebase
 * write a script to download customer information and save it to firebase
 * write a script to download from firebase to excel and to inject into portal

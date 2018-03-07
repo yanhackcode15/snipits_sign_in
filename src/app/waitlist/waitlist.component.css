@@ -11,3 +11,8 @@ table {
 	color: white;
 	text-align: center;
 }
+
+form {
+	padding: 0px 15px 0px 15px;
+	background-color: white;
+}
