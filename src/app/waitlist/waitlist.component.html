@@ -1,7 +1,7 @@
 <div class="waitlist">
 	<div class="header">
 		<h1>
-		  Today's Waitlist
+		  Today's Waitlist -- {{(families[0].data.dateTime.dateObj.month || '') + ' / ' + (families[0].data.dateTime.dateObj.date || '')}}
 		</h1>
 	</div>
 	<form 
@@ -12,11 +12,11 @@
 		<table class="table table-striped container">
 			<thead>
 				<tr class="row">
-					<th class="col-1" scope="col">#</th>
-					<th class="col-1" scope="col">New Cust.</th>
+					<th class="col-0.5" scope="col">#</th>
+					<th class="col-0.5" scope="col">New</th>
 					<th class="col-1" scope="col">Family Code</th>
 					<th class="col-2" scope="col">Last Name</th>
-					<th class="col-1" scope="col">Check-in Time Stamp</th>
+					<th class="col-1" scope="col">Time In</th>
 					<th class="col-4" scope="col">Child's First Name & Status</th>
 					<th class="col-2" scope="col">Notes</th>
 				</tr>
@@ -27,11 +27,11 @@
 					formArrayName="familyControlArry" 
 					*ngFor="let family of families; let i = index;"
 				>
-					<td class="col-1" scope="row">{{ i+1 }}</td>
-					<td class="col-1">{{family.data.newCustomer}}</td>
+					<td class="col-0.5" scope="row">{{ i+1 }}</td>
+					<td class="col-0.5">{{family.data.newCustomer}}</td>
 					<td class="col-1">{{family.data.code || 'N/A'}}</td>
 					<td class="col-2">{{family.data.lastname}}</td>
-					<td class="col-1">{{family.data.dateTime.dateString}}</td>
+					<td class="col-1">{{family.data.dateTime.dateObj.hour + ':' + family.data.dateTime.dateObj.minute}}</td>
 					<td class="col-4">
 						<tr *ngFor="let child of family.data.children | childCheckInFilter; let j = index;">
 							<td>{{child.childName}}</td>
