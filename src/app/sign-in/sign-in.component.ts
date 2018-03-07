@@ -48,7 +48,8 @@ export class SignInComponent implements OnInit {
 		if (this.childCount.value > this.children.controls.length) {
 			for (let i = this.children.controls.length; i < this.childCount.value; ++i) {
 				this.children.push(new FormGroup({
-					childName: new FormControl('', Validators.required)
+					childName: new FormControl('', Validators.required),
+					childGender: new FormControl('', Validators.required),
 				}));
 			}
 		}
@@ -78,7 +79,8 @@ export class SignInComponent implements OnInit {
 	    this.lastname = new FormControl('', Validators.required);
 	    this.childCount = new FormControl('1', Validators.required);
 	    this.children = new FormArray([new FormGroup({
-	    	childName: new FormControl('', Validators.required)
+	    	childName: new FormControl('', Validators.required),
+	    	childGender: new FormControl('', Validators.required),
 	    })]);
 	}
 
@@ -96,11 +98,13 @@ export class SignInComponent implements OnInit {
 		let paramsObj: any = {};
 
 		if (this.myform.valid) {
+			this.error = false;
 			this.modal.clearAll();
 			this.children.controls.forEach((childGroup)=>{
 				children.push({
 					childName: childGroup.get('childName').value,
 					status: 0,
+					gender: childGroup.get('childGender').value,
 				});
 			});
 

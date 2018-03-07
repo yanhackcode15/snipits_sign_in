@@ -25,31 +25,32 @@
 		<div class="card">
 			<div class="card-body">
 				<div 
-					class="form-group input-group" 
+					class="form-group" 
 					[ngClass]="{
-		  				'text-danger': code.invalid && (code.touched || code.dirty),
-		  				'text-success': code.valid && (code.touched || code.dirty)	
+		  				'text-danger': code.invalid && (error || code.touched || code.dirty),
+		  				'text-success': code.valid && (!error || code.touched || code.dirty)	
 					}"
 				>
-					<label 
-						class="input-group-addon" 
-						for="code"
-					>
-						* Family Code
-					</label>
-					<input 
-						type=text 
-						id="code" 
-						class="form-control form-control-lg" 
-						formControlName="code" 
-						required 
-						placeholder="Last 4 digits of your phone#"
-					>
-					<div class="form-control-feedback" *ngIf="code.errors && (code.touched || code.dirty)">
-						<p *ngIf="code.errors.required && (code.touched || code.dirty)">
+					<div class="form-group input-group">
+						<label 
+							class="input-group-addon" 
+							for="code"
+						>
+							* Family Code
+						</label>
+						<input 
+							type="text"
+							id="code" 
+							class="form-control form-control-lg" 
+							formControlName="code" 
+							placeholder="Last 4 digits of your phone#"
+						>
+					</div>
+					<div class="form-control-feedback" *ngIf="code.errors && (error || code.touched || code.dirty)">
+						<p *ngIf="code.errors.required">
 							Family code is required.
 						</p>
-						<p *ngIf="code.errors.minlength || code.errors.maxlength && (code.touched || code.dirty)">
+						<p *ngIf="code.errors.minlength || code.errors.maxlength">
 							Family code must be 4 digits.
 						</p>
 					</div>
@@ -57,8 +58,8 @@
 				<div 
 					class="form-group" 
 					[ngClass]="{
-		  				'text-danger': lastname.invalid && (lastname.touched || lastname.dirty),
-		  				'text-success': lastname.valid && (lastname.touched || lastname.dirty)	
+		  				'text-danger': lastname.invalid && (error || lastname.touched || lastname.dirty),
+		  				'text-success': lastname.valid && (!error || lastname.touched || lastname.dirty)	
 					}"
 				>
 					<div class="form-group input-group">
@@ -75,13 +76,13 @@
 							formControlName="lastname" 
 						>
 					</div>
-					<div class="form-control-feedback" *ngIf="lastname.errors && (lastname.dirty || lastname.touched)">
-						<p *ngIf="lastname.errors.required && (lastname.touched || lastname.dirty)">
+					<br>
+					<div class="form-control-feedback" *ngIf="lastname.errors && (error || lastname.dirty || lastname.touched)">
+						<p *ngIf="lastname.errors.required">
 							Last name is required.
 						</p>
 					</div>
 				</div>
-			
 				<div class="form-group">
 				    <label class="title-text" for="childCount">* How many children will be receiving service today?</label>
 				    <div id="childCount" class="btn-group count" ngbRadioGroup name="radioBasic">
@@ -116,8 +117,8 @@
 						>
 							<div
 								[ngClass]="{
-										'text-danger': child.get('childName').invalid && (child.get('childName').touched || child.get('childName').dirty),
-										'text-success': child.get('childName').valid && (child.get('childName').touched || child.get('childName').dirty)
+										'text-danger': child.get('childName').invalid && (error || child.get('childName').touched || child.get('childName').dirty),
+										'text-success': child.get('childName').valid && (!error || child.get('childName').touched || child.get('childName').dirty)
 								}"
 							>
 							
@@ -132,9 +133,41 @@
 										formControlName="childName" 
 										required>
 								</div>
-								<div class="form-control-feedback" *ngIf="child.errors && (child.touched || child.dirty)">
-									<p *ngIf="child.errors.required && (child.touched || child.dirty)">
+								<div class="form-control-feedback" *ngIf="child.get('childName').errors && (error || child.touched || child.dirty)">
+									<p *ngIf="child.get('childName').errors.required && (error || child.get('childName').touched || child.get('childName').dirty)">
 										Child's name is required.
+									</p>
+								</div>
+							</div>
+							<div
+								[ngClass]="{
+										'text-danger': child.get('childGender').invalid && error,
+										'text-success': child.get('childGender').valid
+								}"
+							>
+								<div 
+									class="form-group input-group btn-group"
+								>
+									
+									<div class="btn-group" ngbRadioGroup name="radioBasic">
+								    	<label class="btn btn-lg btn-outline-primary" ngbButtonLabel>
+								    		<input type="radio" [attr.id]="'child' + i + '_childGender'" class="form-control" value="boy" ngbButton formControlName="childGender">
+								    		<span class="button-text">He</span>
+								    	</label>
+										<label class="btn btn-lg btn-outline-primary" ngbButtonLabel>
+								    		<input type="radio" [attr.id]="'child' + i + '_childGender'" class="form-control" value="girl" ngbButton formControlName="childGender">
+								    		<span class="button-text">She</span>
+								    	</label>
+								    </div>
+								</div>
+								<div 
+									class="form-control-feedback" 
+									*ngIf="child.get('childGender').errors && error"
+								>
+									<p 
+										*ngIf="child.get('childGender').errors.required && error"
+									>
+										Should we call your child using She or He?
 									</p>
 								</div>
 							</div>

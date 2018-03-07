@@ -34,6 +34,7 @@
 				<td>
 					<tr *ngFor="let child of family.data.children | childCheckInFilter; let j = index;">
 						<td>{{child.childName}}</td>
+						<td>{{child.gender || 'N/A'}}</td>
 						<td *ngIf="!child.status"><button class='btn btn-primary' (click)="checkInChild($event, family, i, child, j)">Start Service</button></td>
 						<td *ngIf="child.status"><div>Checked In </div></td>
 						<td *ngIf="child.status"><button class='btn btn-secondary' (click)="checkInChild($event, family, i, child, j)"> Undo </button></td>
