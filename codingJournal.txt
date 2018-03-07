@@ -256,10 +256,24 @@ todos
 * set cleear cookies to be all the time in chrome
 
 3/6 Tuesday
+* two phone interviews
+* update Feb sales number/dashboard
+* looked at schedule
+* issue with Judy calling out - on the phone
+
+3/7 Wed
+* morning: schedule and confirming with Tiffany, Sasha and Judy on schedule
+* call with Yvonne
 * add gender in existing client sign in
 * show gender in stylist waitlist page
 * create a customer waitlist page
 * lock the chrome tab so customer can't close it or open a new tab
+
+Future
+* create a new page: submit vacation request
+* create vacation request validation: 1. three weeks auto reject unless exception - emergency; 2. validated against black off days
+* create a black off days calendar
+* cut off day is end of the day - Tuesday (if submission is after Tuesday, will need to find your own swap buddy)
 * write a new script to enter new customer information into firebase
 * write a script to download customer information and save it to firebase
 * write a script to download from firebase to excel and to inject into portal
@@ -267,6 +281,7 @@ todos
 Parking Lot: 
 * set up google hangout
 * set up tablets
+
 
 Programming Theory Parking lot: 
 * new app to submit schedule and time off request online (a text service to snipits and reeive a link to submit)
