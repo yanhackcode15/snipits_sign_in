@@ -60,4 +60,23 @@ export class DataService {
 		return firebase.database().ref('/families').update(newNotes);
 	}
 
+	getWaitingCount = ()=>{
+		return new Promise ( (resolve, reject) =>{
+			let count=0;
+			let waitingFamilies=[];
+			this.getTodaysChildren().once('value', (snapshot)=>{ 
+				snapshot.forEach(eachShot=>{
+					waitingFamilies.push(eachShot.val());
+				});
+				waitingFamilies.forEach((family)=>{
+					family.children.forEach((child)=>{
+						if (child.status===0 && (!child.childCheckIn || child.childCheckIn ==='true'  )) {count++}
+					});
+
+				});
+				resolve(count);
+			});
+		});
+	}
+
 }

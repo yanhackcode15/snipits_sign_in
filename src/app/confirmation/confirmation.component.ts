@@ -17,7 +17,8 @@ export class ConfirmationComponent implements OnInit {
 	fcode: string;
 	children: Array<string> = [];
 	timeStamp: string;
-	families: any[]=[];
+	families: any[]=[]
+	;
 	waitingCount: any = 0;
 
 	constructor(private dataService: DataService, private activeroute: ActivatedRoute, private router: Router) { 
@@ -26,6 +27,7 @@ export class ConfirmationComponent implements OnInit {
 			this.fcode = params.code;
 			this.children = params.children.split(',');
 			this.timeStamp = params.timeStamp;
+			this.waitingCount = parseInt(params.waitingCount) + 1;
 		});
 	}
 
@@ -35,7 +37,7 @@ export class ConfirmationComponent implements OnInit {
 	        this.router.navigate(['']);
 	    }, 10000);  //5s
 
-		this.getWaitingCount();
+		// this.getWaitingCount();
 	}
 
 	capitalizeFirst(str) {
@@ -48,25 +50,5 @@ export class ConfirmationComponent implements OnInit {
 		    }
 		}).join('');
 	}
-
-	getWaitingCount() {
-		let count
-		this.dataService.getTodaysChildren().once('value', (snapshot)=>{ 
-			snapshot.forEach((eachShot)=>{
-				var familyData = eachShot.val();
-				this.families.push(familyData);
-			});
-		});
-
-		this.families.forEach((family)=>{
-			family.children.forEach((child)=>{
-				if (child.status===0 && (!child.childCheckIn || child.childCheckIn ==='true'  )) {this.waitingCount++}
-			});
-
-		});
-	}
-
-
-
 
 }

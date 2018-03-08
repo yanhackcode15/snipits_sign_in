@@ -36,6 +36,7 @@ export class SignInComponent implements OnInit {
 	formSubmit: boolean = false; 
 	noSubmit: any;
 	error: boolean;
+	waitingCount: any = 0;
 
 	@ViewChild(IdleCheckModalComponent) modal: IdleCheckModalComponent;
 
@@ -100,35 +101,39 @@ export class SignInComponent implements OnInit {
 		if (this.myform.valid) {
 			this.error = false;
 			this.modal.clearAll();
-			this.children.controls.forEach((childGroup)=>{
-				children.push({
-					childName: childGroup.get('childName').value,
-					status: 0,
-					gender: childGroup.get('childGender').value,
+			this.dataService.getWaitingCount()
+			.then((count)=>{
+				this.children.controls.forEach((childGroup)=>{
+					children.push({
+						childName: childGroup.get('childName').value,
+						status: 0,
+						gender: childGroup.get('childGender').value,
+					});
 				});
+
+				this.family = {
+					code: this.code.value,
+					lastname: this.lastname.value,
+					children: children,
+					newCustomer: 'N',
+					notes: '',
+				};
+
+				this.family.dateTime = this.dateStamperService.getToday();
+				
+				//construct an object to pass as the confirmation page url params
+				paramsObj.code = this.family.code; 
+				paramsObj.lastname = this.family.lastname; 
+				paramsObj.children = this.family.children.map(child => child.childName).join(',');
+				paramsObj.timeStamp = this.family.dateTime.dateString;
+				paramsObj.waitingCount = count;
+
+
+				this.dataService.signInFamily(this.family)
+					// .then(() => this.router.navigateByUrl(urlString);
+					// .then( ()=>this.router.navigate(['confirmation', paramsObj]))
+					.then( ()=>this.router.navigate(['confirmation'], {queryParams: paramsObj} ) )
 			});
-
-			this.family = {
-				code: this.code.value,
-				lastname: this.lastname.value,
-				children: children,
-				newCustomer: 'N',
-				notes: '',
-			};
-
-			this.family.dateTime = this.dateStamperService.getToday();
-			
-			//construct an object to pass as the confirmation page url params
-			paramsObj.code = this.family.code; 
-			paramsObj.lastname = this.family.lastname; 
-			paramsObj.children = this.family.children.map(child => child.childName).join(',');
-			paramsObj.timeStamp = this.family.dateTime.dateString;
-
-
-			this.dataService.signInFamily(this.family)
-				// .then(() => this.router.navigateByUrl(urlString);
-				// .then( ()=>this.router.navigate(['confirmation', paramsObj]))
-				.then( ()=>this.router.navigate(['confirmation'], {queryParams: paramsObj} ) )
 		}
 		else {
 			// this.formSubmit = true;
@@ -146,6 +151,27 @@ export class SignInComponent implements OnInit {
 	onKeydown(e) {
 		this.utilityService.onKeydown(e);
 	}
+
+	getWaitingCount = ()=>{
+		return new Promise ( (resolve, reject) =>{
+			let count=0;
+			let waitingFamilies=[];
+			this.dataService.getTodaysChildren().once('value', (snapshot)=>{ 
+				snapshot.forEach(eachShot=>{
+					waitingFamilies.push(eachShot.val());
+				});
+				waitingFamilies.forEach((family)=>{
+					family.children.forEach((child)=>{
+						if (child.status===0 && (!child.childCheckIn || child.childCheckIn ==='true'  )) {count++}
+					});
+
+				});
+				resolve(count);
+			});
+		});
+	}
+
+
 
 }
 

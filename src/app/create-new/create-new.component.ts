@@ -228,17 +228,20 @@ export class CreateNewComponent implements OnInit {
 			this.family.leadSource = {leadCode: leadCode, leadSource: this.leadSource.value};
 			this.family.dateTime = this.dateStamperService.getToday();
 
-			//construct an object to pass as the confirmation page url params
-			paramsObj.code = fcode; 
-			paramsObj.lastname = this.family.lastname; 
-			paramsObj.children = this.family.children.map(child => child.childName).join(',');
-			paramsObj.timeStamp = this.family.dateTime.dateString; 
-			
+			this.dataService.getWaitingCount()
+			.then(count=>{
+				//construct an object to pass as the confirmation page url params
+				paramsObj.code = fcode; 
+				paramsObj.lastname = this.family.lastname; 
+				paramsObj.children = this.family.children.map(child => child.childName).join(',');
+				paramsObj.timeStamp = this.family.dateTime.dateString; 
+				paramsObj.waitingCount = count;
 
-			this.dataService.signInFamily(this.family)
-				// .then(() => this.router.navigateByUrl(urlString);
-				// .then( ()=>this.router.navigate(['confirmation', paramsObj]))
-				.then( ()=>this.router.navigate(['confirmation'], {queryParams: paramsObj} ) )
+				this.dataService.signInFamily(this.family)
+					// .then(() => this.router.navigateByUrl(urlString);
+					// .then( ()=>this.router.navigate(['confirmation', paramsObj]))
+					.then( ()=>this.router.navigate(['confirmation'], {queryParams: paramsObj} ) )
+			});
 		}
 		else {
 			this.error = true; 
