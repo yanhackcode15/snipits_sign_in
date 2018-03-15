@@ -20,6 +20,7 @@ export class ConfirmationComponent implements OnInit {
 	families: any[]=[]
 	;
 	waitingCount: any = 0;
+	timerId: any;
 
 	constructor(private dataService: DataService, private activeroute: ActivatedRoute, private router: Router) { 
 		this.activeroute.queryParams.subscribe( params => {
@@ -32,9 +33,10 @@ export class ConfirmationComponent implements OnInit {
 	}
 
 	ngOnInit() {
-		setTimeout(() => {
+		this.timerId = setTimeout(() => {
 	        this.router.navigate(['']);
 	    }, 10*1000);  
+	    console.log('Seeeeeet', this.timerId);
 	}
 
 	capitalizeFirst(str) {
@@ -46,6 +48,11 @@ export class ConfirmationComponent implements OnInit {
 		    	return letter;
 		    }
 		}).join('');
+	}
+
+	clearTimer() {
+		clearTimeout(this.timerId);
+		console.log('CCCCCCCLLLLLLL', this.timerId);
 	}
 
 }

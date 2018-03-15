@@ -93,6 +93,7 @@ export class IdleCheckModalComponent implements OnInit {
 	}
 
 	routeToHome() {
+		clearTimeout(this.timerId);
 		this.router.navigate(['']);
 	}
 

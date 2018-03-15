@@ -1,4 +1,4 @@
-<div class="container" (touchstart)="modal.resetIdle($event)" (keydown)="modal.resetIdle()">
+<div class="container" (window:beforeunload)="modal.clearAll()" (touchstart)="modal.resetIdle($event)" (keydown)="modal.resetIdle()">
 	<div>
 		<h3 class="heading">Welcome To Snipits!</h3>
 		<p class="heading">It looks like it's your first time. We'll be creating a family profile and check in your party. If you have been with us before, please click <a [routerLink]="['/sign-in']">here</a> to go to the returning user page. </p>
