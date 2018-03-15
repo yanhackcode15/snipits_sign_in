@@ -32,12 +32,9 @@ export class ConfirmationComponent implements OnInit {
 	}
 
 	ngOnInit() {
-
 		setTimeout(() => {
 	        this.router.navigate(['']);
-	    }, 10000);  //5s
-
-		// this.getWaitingCount();
+	    }, 10*1000);  
 	}
 
 	capitalizeFirst(str) {

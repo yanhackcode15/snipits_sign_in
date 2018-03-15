@@ -61,7 +61,7 @@ export class DataService {
 	}
 
 	getWaitingCount = ()=>{
-		return new Promise ( (resolve, reject) =>{
+		return new Promise ( (resolve, reject)=>{
 			let count=0;
 			let waitingFamilies=[];
 			this.getTodaysChildren().once('value', (snapshot)=>{ 

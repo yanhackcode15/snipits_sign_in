@@ -43,7 +43,6 @@ declare var google: any;
 				id="address" 
 				[formControl]="address"
 				(change)="showValue($event)"
-				(blur)="onBlur($event)"
 				autocomplete="random"
 				role="presentation"
 			>
@@ -105,20 +104,6 @@ export class AddressAutoCompleteComponent implements OnInit {
 								return;
 							}
 
-							// const address = Object.assign({}, this.componentForm);
-							// for (let key in address) {
-							// 	address[key] = ''; 
-							// }
-
-							// if (place.address_components) {
-							// 	for (var i = 0; i < place.address_components.length; i++) {
-						 //          var addressType = place.address_components[i].types[0];
-						 //          if (this.componentForm[addressType]) {
-						 //            var val = place.address_components[i][this.componentForm[addressType]];
-						 //            address[addressType]= val;
-						 //          }
-						 //        }
-							// }
 							const address = place.address_components
 								.filter((component) => !!this.componentForm[component.types[0]])
 								.reduce((address, component) => {
@@ -140,12 +125,12 @@ export class AddressAutoCompleteComponent implements OnInit {
 
 	}
 
-	onBlur ($event) {
-		console.log("Blurrrrred");
-	}
+	// onBlur ($event) {
+	// 	console.log("Blurrrrred");
+	// }
 
 	showValue ($e) {
-		console.log('showValue', this.address.value);
+		// console.log('showValue', this.address.value);
 		if (this.address.value!=='') {
 			this.isVerifiedAddress = false;
 		}

@@ -101,33 +101,31 @@ export class SignInComponent implements OnInit {
 		if (this.myform.valid) {
 			this.error = false;
 			this.modal.clearAll();
+			//construct an object to pass as the confirmation page url params
+			this.children.controls.forEach((childGroup)=>{
+				children.push({
+					childName: childGroup.get('childName').value,
+					status: 0,
+					gender: childGroup.get('childGender').value,
+				});
+			});
+
+			this.family = {
+				code: this.code.value,
+				lastname: this.lastname.value,
+				children: children,
+				newCustomer: 'N',
+				notes: '',
+			};
+
+			this.family.dateTime = this.dateStamperService.getToday();
 			this.dataService.getWaitingCount()
 			.then((count)=>{
-				this.children.controls.forEach((childGroup)=>{
-					children.push({
-						childName: childGroup.get('childName').value,
-						status: 0,
-						gender: childGroup.get('childGender').value,
-					});
-				});
-
-				this.family = {
-					code: this.code.value,
-					lastname: this.lastname.value,
-					children: children,
-					newCustomer: 'N',
-					notes: '',
-				};
-
-				this.family.dateTime = this.dateStamperService.getToday();
-				
-				//construct an object to pass as the confirmation page url params
 				paramsObj.code = this.family.code; 
 				paramsObj.lastname = this.family.lastname; 
 				paramsObj.children = this.family.children.map(child => child.childName).join(',');
 				paramsObj.timeStamp = this.family.dateTime.dateString;
 				paramsObj.waitingCount = count;
-
 
 				this.dataService.signInFamily(this.family)
 					// .then(() => this.router.navigateByUrl(urlString);
@@ -136,11 +134,9 @@ export class SignInComponent implements OnInit {
 			});
 		}
 		else {
-			// this.formSubmit = true;
 			this.error = true; 
 			this.noSubmit = "Please make sure to fill in all required fields and check for errors.";
 		}
-		
 
 	}
 
