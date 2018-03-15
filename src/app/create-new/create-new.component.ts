@@ -143,8 +143,6 @@ export class CreateNewComponent implements OnInit {
 	}
 
 	ngOnInit() {
-		// this.dataService.fetchData().subscribe(); //what does this do?
-		// this.dataService.getChild();
 		this.createFormControls();
 		this.createForm();
 		this.initializeSubmitFields ();
@@ -188,7 +186,6 @@ export class CreateNewComponent implements OnInit {
 	}
 
 	signIn() {
-		// console.log('children valid', this.children.valid);
 		this.lastname.markAsTouched();
 		this.phone.markAsTouched(); 
 		this.children.controls.forEach((childGroup)=>{
@@ -238,8 +235,6 @@ export class CreateNewComponent implements OnInit {
 				paramsObj.waitingCount = count;
 
 				this.dataService.signInFamily(this.family)
-					// .then(() => this.router.navigateByUrl(urlString);
-					// .then( ()=>this.router.navigate(['confirmation', paramsObj]))
 					.then( ()=>this.router.navigate(['confirmation'], {queryParams: paramsObj} ) )
 			});
 		}
@@ -308,23 +303,18 @@ export class CreateNewComponent implements OnInit {
 	allOrNothing (control: AbstractControl): {[key: string]: any} {
 	  	let valid = true;
 	  	let birthArry = control.value.split('/');
-	  	// console.log('birthArry', birthArry);
 
 		if (birthArry[0] !== '' && birthArry[0] !== 'Month' && (birthArry[1] !== '') && (birthArry[2] !== '')) {
 			valid = true;
-			// console.log('if', valid);
 		}
 		else if ((birthArry[0] === '') && (birthArry[1] === '') && (birthArry[2]=== '')) { //all must be empty
 			valid = true;
-			// console.log('else if', valid);
 		}
 		else if (birthArry.length===1) {
 			valid = true;
-			// console.log('else if', valid);
 		}
 		else { 
 			valid = false;
-			// console.log('else', valid);
 		}
 	
 		return valid ? null : {'notValidBirthday': {value: control.value}};

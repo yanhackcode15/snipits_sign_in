@@ -125,12 +125,7 @@ export class AddressAutoCompleteComponent implements OnInit {
 
 	}
 
-	// onBlur ($event) {
-	// 	console.log("Blurrrrred");
-	// }
-
 	showValue ($e) {
-		// console.log('showValue', this.address.value);
 		if (this.address.value!=='') {
 			this.isVerifiedAddress = false;
 		}

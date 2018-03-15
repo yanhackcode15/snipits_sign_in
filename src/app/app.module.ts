@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-// import { FormsModule } from '@angular/forms';
 import {
     ReactiveFormsModule,
     FormsModule,
@@ -15,7 +14,6 @@ import {
 } from '@angular/forms';
 
 import {HttpClientModule} from '@angular/common/http';
-// import { NgBootstrapFormValidationModule } from 'ng-bootstrap-form-validation';
 import { AgmCoreModule } from '@agm/core';
 import {TouchEventModule} from "ng2-events/lib/touch";
 
@@ -69,8 +67,6 @@ import { ChildCheckInFilterPipe } from './child-check-in-filter.pipe';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     TouchEventModule,
-    // FormArray,
-    // NgBootstrapFormValidationModule.forRoot(),
   ],
   providers: [DataService, DateStamperService, UtilityService],
   bootstrap: [AppComponent]

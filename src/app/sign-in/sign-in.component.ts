@@ -128,8 +128,6 @@ export class SignInComponent implements OnInit {
 				paramsObj.waitingCount = count;
 
 				this.dataService.signInFamily(this.family)
-					// .then(() => this.router.navigateByUrl(urlString);
-					// .then( ()=>this.router.navigate(['confirmation', paramsObj]))
 					.then( ()=>this.router.navigate(['confirmation'], {queryParams: paramsObj} ) )
 			});
 		}

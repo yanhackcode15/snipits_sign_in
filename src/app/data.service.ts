@@ -11,19 +11,13 @@ export class DataService {
 
 	constructor(private http: HttpClient, private dateStamperService: DateStamperService) { }
 
-	// fetchData() {
-	// 	return this.http.get('https://snipits-sign-in.firebaseio.com/.json');
-	// }
-
 	getChild() {
 		firebase.database().ref('/families').on('child_added', (snapshot)=>{
-			// console.log(snapshot.val())
 		});
 	}
 
 	signInFamily(familyObj) {
 		return firebase.database().ref('/families').push(familyObj);
-		// this.getChild();
 	}
 
 	getTodaysChildren () {
