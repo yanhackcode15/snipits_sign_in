@@ -1,4 +1,4 @@
-<div class="container" (window:beforeunload)="modal.clearAll()" (touchstart)="modal.resetIdle($event)" (keydown)="modal.resetIdle()">
+<div class="container container-color" (window:beforeunload)="modal.clearAll()" (touchstart)="modal.resetIdle($event)" (keydown)="modal.resetIdle()">
 	<div>
 		<h3 class="heading">It's great to see you again!</h3>
 		<p class="heading">You or your family must have visited us at least once in order to check in. If it's your first time, please click <a [routerLink]="['/create-new']">here</a> to go to the first time user page. </p>

@@ -5,10 +5,22 @@
 	padding: 0;
 }
 
-html body {
-	background-color: #25283D;
+html{
+    min-height:100%;/* make sure it is at least as tall as the viewport */
+    position:relative;
 }
 
+body{
+	/*background-color: #25283D !important;*/
+	background-size: cover;
+	background-image: url('./assets/landing_bg.png');
+	background-repeat: no-repeat;
+    height:100%; /* force the BODY element to match the height of the HTML element */
+}
+
+.container-color {
+	background-color: #25283D;	
+}
 .card {
 	margin: 10px;
 }
@@ -57,5 +69,9 @@ html body {
 
 .formError {
 	z-index: 1000;
+}
+
+.container {
+	height: 100%;
 }
 
